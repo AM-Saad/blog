@@ -1,0 +1,19 @@
+.wrapper{
+    width: 100%;
+}
+header{
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+header h2{
+    text-align: right;
+}
+header img{
+    width: 100%;
+    max-width: 100%;
+    box-shadow: var(--shadow3);
+    display: block;
+    margin: auto;
+    margin-bottom: var(--m-margin);
+}

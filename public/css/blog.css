@@ -1,0 +1,36 @@
+
+  #NewArticleForm{
+    padding: var(--main-padding);
+    height: 100%;
+    width: 100%;
+    z-index: 99999;
+    background-color: #fff;
+  }
+  #NewArticleForm form{
+    background-color: #fff;
+  }
+  .articleInputs{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  #allArticles{
+    margin: var(--main-margin) 0;
+    background-color: #111;
+    padding: var(--main-padding);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: var(--main-margin);
+  }
+  #allArticles article{
+    height: auto;
+    height: 200px;
+    background: #222;
+    color: #fff;
+    padding: var(--main-padding);
+    text-align: left;
+    border: 1.1px solid #444;
+    border-radius: var(--scnd-radius)
+  }

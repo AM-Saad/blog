@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Form</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+        }
+        form{
+            width: 75%;
+            padding: 20px;
+            margin: auto;
+            background-color: #eee;
+            border: 1.3px solid #555;
+
+        }
+        form input, button,select{
+            width: 400px;
+            padding: 0 10px;
+            height: 50px;
+            background-color: transparent;
+            border: 0;
+            display: block;
+            border-bottom: 1.5px solid #222;
+            border-radius: 10px;
+            margin: auto;
+            margin-bottom: 7px;
+
+        }
+        button{
+            background-color: #111;
+            color: #fff;
+            height: 50px;
+            width: 200px;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <form action="/auth/login" method="post">
+        <input type="email" name="email" id="" placeholder="enter your email">
+        <input type="password" name="password" id="" placeholder="enter your password">
+
+        <button type="submit">Send</button>
+    </form>
+
+    <script>
+
+    </script>
+</body>
+</html>

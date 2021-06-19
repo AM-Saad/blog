@@ -1,0 +1,18 @@
+<nav>
+
+    <ul id="topics">
+        <li class="<%= path === '/' ? 'active' : '' %>">
+            <a href="/">
+                All
+            </a>
+        </li>
+        <% for (let c of topics) { %>
+
+            <li class="<%= c.name === path.replace('/', '') ? 'active' : '' %>">
+                <a href="/articles/<%=c.name%>">
+                    <%=c.name%>
+                </a>
+            </li>
+            <%}%>
+    </ul>
+</nav>

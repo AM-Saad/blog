@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./includes/head.ejs') %>
+
+</head>
+
+<body>
+    <%- include('./includes/nav.ejs') %>
+
+        <div class="wrapper">
+            <header>
+                <h2>24 May 2021</h2>
+                <h1>Hello, My Awesome Reader</h1>
+            </header>
+            <%- include('./includes/topics.ejs') %>
+                <section id="articles">
+                    <% for(article of articles){ %>
+                        <article style="background-image:url('https://servers.ams-server.xyz/<%=article.image %>');">
+                            <a href="/article/<%=article.title%>">
+                                <div class="article-body">
+                                    <h3>
+                                        <%=article.title%>
+                                    </h3>
+                                    <p><%= article.date %></p>
+                                </div>
+                            </a>
+                        </article>
+                        <%}%>
+                </section>
+        </div>
+
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./includes/head.ejs') %>
+
+</head>
+
+<body>
+    <%- include('./includes/nav.ejs') %>
+
+        <div class="wrapper">
+            <%- include('./includes/topics.ejs') %>
+                <% if(articles.length> 0 ){ %>
+                    <section id="articles">
+                        <% for(article of articles){ %>
+                            <article
+                                style="background-image:url('https://servers.ams-server.xyz/<%=article.image %>');">
+                                <a href="/article/<%=article.title%>">
+                                    <div class="article-body">
+                                        <h3>
+                                            <%=article.title%>
+                                        </h3>
+                                        <p>
+                                            <%= article.date %>
+                                        </p>
+                                    </div>
+                                </a>
+                            </article>
+                            <% } %>
+
+                    </section>
+                    <% } else { %>
+                        <h3>Nothing Here Yet..</h3>
+                        <h4>But you may be intersted in</h4>
+                        <% } %>
+
+        </div>
+
+</body>
+
+</html>

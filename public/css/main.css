@@ -1,0 +1,172 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    font-family: 'Varela Round', sans-serif;
+}
+
+/* Scrollbar Styling */
+
+::-webkit-scrollbar {
+    width: 0px;
+    border-radius: 15px;
+    height: 0;
+  }
+  
+  
+  ::-webkit-scrollbar-track {
+    background-color: rgba(17, 17, 17, 0.388);
+    width: 5px;
+    border-radius: 15px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #222;
+    border-radius: 15px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #333;
+  }
+  body{
+      background-color: #fff;
+  }
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+nav#main-nav {
+    padding: var(--m-padding);
+}
+
+nav#main-nav li {
+    padding: var(--s-padding);
+    border: 1px solid #ccc;
+    border-radius: var(--s-radius);
+    font-size: 22px;
+}
+
+.wrapper {
+    padding: var(--s-padding);
+    box-shadow: var(--shadow);
+    margin: var(--s-margin);
+    border-radius: var(--m-radius);
+    background: #fff;
+}
+
+header {
+    padding: var(--m-padding);
+    margin-bottom: var(--m-margin);
+}
+
+header h1 {
+    margin: var(--s-margin) 0;
+    font-size: 25px;
+}
+header h2 {
+    font-size: 18px;
+    color: #777;
+}
+
+#topics {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    max-width: 99%;
+    margin-bottom: var(--m-margin);
+    display: flex;
+    position: sticky;
+    top: 100px;
+    padding: var(--m-margin) 0;
+}
+
+#topics li {
+    min-width: 160px;
+    height: 45px;
+    border-radius: var(--m-radius);
+    border: 2px solid #fff;
+    text-align: center;
+    line-height: 43px;
+    text-transform: capitalize;
+    margin: 0;
+    margin-right: var(--m-margin);
+    padding: 0 var(--s-padding);
+    transition: .3s;
+    background: var(--main-color);
+}
+
+#topics li a {
+    color: #fff;
+    display: block;
+    transition: .3s;
+}
+
+#topics li, #topics li a:visited {
+    color: #fff;
+}
+
+#topics li.active a, #topics li:hover a {
+    color: #fff;
+}
+
+#topics li.active, #topics li:hover {
+    background-color: var(--scnd-color);
+}
+
+#articles {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    max-width: 99%;
+    padding: var(--m-padding);
+    margin-bottom: var(--m-margin);
+    display: flex;
+
+}
+
+#articles article {
+    padding: var(--s-padding);
+    height: 300px;
+    min-width: 300px;
+    max-width: 300px;
+    border-radius: var(--m-radius);
+    box-shadow: var(--shadow3);
+    margin-bottom: var(--m-margin);
+    margin-right: var(--m-margin);
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+#articles article a {
+    display: block;
+    height: 100%;
+    color: #000;
+    background: #ffffff1f;
+}
+
+#articles .article-body {
+    background-color: #fff;
+    height: 40%;
+    width: 95%;
+    padding: var(--s-padding);
+    border-radius: var(--s-radius);
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#articles .article-body h3 {
+    font-size: 16px;
+}
+
+#articles .article-body p {
+    text-align: right;
+    margin: var(--s-margin);
+}

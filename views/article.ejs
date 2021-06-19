@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./includes/head.ejs') %>
+        <link rel="stylesheet" href="/css/article.css">
+
+</head>
+
+<body>
+    <%- include('./includes/nav.ejs') %>
+
+        <div class="wrapper">
+            <%- include('./includes/topics.ejs') %>
+
+                <header>
+                    <h1>
+                        <%=article.title%>
+                    </h1>
+                    <h2>
+                        <%=article.date%>
+                    </h2>
+                    <img src="https://servers.ams-server.xyz/<%=article.image%>" alt="">
+                </header>
+
+
+                <article>
+                    <h3>
+                        <%=article.title%>
+                    </h3>
+                    <p id="content">
+                        <%=article.content%>
+                    </p>
+                </article>
+
+        </div>
+        <script>
+            var arabic = /[\u0600-\u06FF]/;
+            const content = document.getElementById('content').innerText
+            const res = arabic.test(content)
+            document.getElementById('content').innerHTML = content
+            if(res){
+                document.querySelector('.wrapper').style.direction ='rtl'
+            }
+        </script>
+</body>
+
+</html>

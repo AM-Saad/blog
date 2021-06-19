@@ -1,0 +1,219 @@
+[
+    {
+        "reactions": {
+            "highfive": {
+                "users": [],
+                "counter": 0
+            },
+            "like": {
+                "users": [],
+                "counter": 0
+            },
+            "dislike": {
+                "users": [],
+                "counter": 0
+            }
+        },
+        "category": {
+            "name": "web designs",
+            "sub": null
+        },
+        "shares": [],
+        "tags": [],
+        "views": 94,
+        "title": "Unique tip for CSS ✨",
+        "content": "<p><span class=\"ql-size-large\">Hello guys, I've found a very useful tip I didn't know before and I would like to share it with you.</span></p><p><span class=\"ql-size-large\">Have you tried before to make a shadow for a transparent picture and the final outcome became something like that😒</span></p><p><br></p><p><br></p><p><img src=\"https://ams-server.xyz/images/a679c927-fac5-4588-8e77-bfb60f5fbd9a\"></p><p><span style=\"background-color: rgb(255, 255, 255);\" class=\"ql-size-large\">and you want it to be something like that🤩</span></p><p><span class=\"ql-size-large\">Ok here's the way you can achieve the awesome result✨</span></p><p><br></p><h3><span class=\"ql-size-large\">instead of</span></h3><p><strong class=\"ql-size-large\">box-shadow: 2px 4px 6px #ff8429</strong></p><p><br></p><h3><span class=\"ql-size-large\">do it like this</span></h3><p><strong class=\"ql-size-large\">filter: drop-shadow(2px 4px 6px #ff8429)</strong></p><p><br></p><p><span class=\"ql-size-large\">That's it, have a productive day❤️</span></p>",
+        "image": "images/053c56a7-d8d7-48a0-bf89-fcbbb1aef85a",
+        "discussion": [],
+        "date": "2020-11-08",
+        "time": "4:20 pm",
+        "author": "5f33dfe504aa5f29f030864c",
+        "createdAt": "2020-11-08T14:20:19.594Z",
+        "updatedAt": "2021-05-02T02:11:55.064Z",
+        "__v": 0,
+        "active": true,
+        "site_description": "undefined"
+    },
+    {
+        "reactions": {
+            "highfive": {
+                "users": [],
+                "counter": 0
+            },
+            "like": {
+                "users": [],
+                "counter": 0
+            },
+            "dislike": {
+                "users": [],
+                "counter": 0
+            }
+        },
+        "category": {
+            "name": "web designs",
+            "sub": null
+        },
+        "shares": [],
+        "tags": [
+            "javascript",
+            "frontend"
+        ],
+        "views": 11,
+        "title": "3 Unique Javascript Window APIS ✨",
+        "content": "<p><span class=\"ql-size-huge\">Javascript has a powerful built-in API that makes our life easier as developers.</span></p><p><span class=\"ql-size-huge\">Today we're going to cover 3 of them.</span></p><p><br></p><p><strong class=\"ql-size-large\">Note: These APIS are experimental so you need to check of the browser support them first before using it in production</strong></p><p><br></p><h2>1-navigator.Online:</h2><p>Lets you check the user internet connection, return false if the connection is lost and true when it back</p><p><br></p><pre class=\"ql-syntax\" spellcheck=\"false\"><span class=\"hljs-keyword\">if</span>( !navigator.online ) {\n<span class=\"hljs-built_in\">console</span>.log(<span class=\"hljs-string\">\" You're offline, check your connection. 🔴\"</span>)\n} <span class=\"hljs-keyword\">else</span> {\n<span class=\"hljs-built_in\">console</span>.log(<span class=\"hljs-string\">\" Your connection is back 🟢\"</span>)\n}\n</pre><p><br></p><h2>2-navigator.language:</h2><p>Lets you get the language of the browser</p><pre class=\"ql-syntax\" spellcheck=\"false\"><span class=\"hljs-built_in\">console</span>.log(navigator.language)\n\n <span class=\"hljs-comment\">//output en-Us</span>\n</pre><p><br></p><h2>3-navigator.geolocation:</h2><p>Lets you get the location of the device</p><pre class=\"ql-syntax\" spellcheck=\"false\">navigator.geolocation.getCurrentPosition(displayPosition)\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> <span class=\"hljs-title\">displayPosition</span>(<span class=\"hljs-params\">position</span>)</span>{\n  <span class=\"hljs-built_in\">console</span>.log(<span class=\"hljs-string\">'Latitude:'</span> + position.coords.latitude)\n\n  <span class=\"hljs-built_in\">console</span>.log(<span class=\"hljs-string\">'Longitude:'</span> + position.coords.longitude)\n}\n\n <span class=\"hljs-comment\">//Latitude: 40.1294478</span>\n<span class=\"hljs-comment\">//Longitude: 41.34804699999998</span>\n</pre><p><br></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(10, 10, 10);\">That's it, Have a productive day ❤️</span></p>",
+        "image": "images/72c8d2e6-019a-45fb-9bc5-34be7282b2e9",
+        "discussion": [],
+        "date": "2021-01-15",
+        "time": "9:41 pm",
+        "createdAt": "2021-01-16T02:41:49.155Z",
+        "updatedAt": "2021-04-23T23:08:54.122Z",
+        "__v": 0,
+        "active": true,
+        "site_description": "undefined"
+    },
+    {
+        "reactions": {
+            "highfive": {
+                "users": [],
+                "counter": 0
+            },
+            "like": {
+                "users": [],
+                "counter": 0
+            },
+            "dislike": {
+                "users": [],
+                "counter": 0
+            }
+        },
+        "category": {
+            "name": "web designs",
+            "sub": null
+        },
+        "shares": [],
+        "tags": [
+            "javascript",
+            "frontend"
+        ],
+        "views": 18,
+        "title": "6 Useful Methods For Javascript Objects ✨",
+        "content": "<p><span class=\"ql-size-large\">Hello guys, today we're going to explore the most used object methods with javascript.</span></p><p><span class=\"ql-size-large\">let's div deep directly.</span></p><p><br></p><h1>1-Object.values()</h1><p><strong class=\"ql-size-large\">return array of the object's values</strong></p><p><span class=\"ql-size-large\">assume we've got this object and we need to get the values only.</span></p><p><br></p><pre class=\"ql-syntax\" spellcheck=\"false\">  <span class=\"hljs-keyword\">const</span> car = {<span class=\"hljs-attr\">name</span>:<span class=\"hljs-string\">'Audi'</span>, <span class=\"hljs-attr\">model</span>:<span class=\"hljs-string\">'a4'</span>, <span class=\"hljs-attr\">year</span>:<span class=\"hljs-number\">2020</span>}\n  <span class=\"hljs-keyword\">const</span> values = <span class=\"hljs-built_in\">Object</span>.values(car)\n  <span class=\"hljs-built_in\">console</span>.log(values)\n  <span class=\"hljs-comment\">//output ['Audi', 'a4', 2020]</span>\n</pre><p><br></p><p><br></p><h1>2-Object.keys()</h1><p><strong class=\"ql-size-large\">it's the opposite of the first function it return array of the object's Keys(names)</strong></p><p><br></p><pre class=\"ql-syntax\" spellcheck=\"false\">  <span class=\"hljs-keyword\">const</span> car = {<span class=\"hljs-attr\">name</span>:<span class=\"hljs-string\">'Audi'</span>, <span class=\"hljs-attr\">model</span>:<span class=\"hljs-string\">'a4'</span>, <span class=\"hljs-attr\">year</span>:<span class=\"hljs-number\">2020</span>}\n  <span class=\"hljs-keyword\">const</span> keys = <span class=\"hljs-built_in\">Object</span>.keys(car)\n  <span class=\"hljs-built_in\">console</span>.log(keys)\n  <span class=\"hljs-comment\">//output ['name', 'model', year]</span>\n</pre><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(10, 10, 10);\" class=\"ql-size-large\">easy, right?</span></p><p><br></p><h1>3-Object.assign()</h1><p><strong class=\"ql-size-large\">it's Useful for merging or cloning objects</strong></p><p><br></p><pre class=\"ql-syntax\" spellcheck=\"false\">  <span class=\"hljs-keyword\">const</span> car = {<span class=\"hljs-attr\">name</span>:<span class=\"hljs-string\">'Audi'</span>, <span class=\"hljs-attr\">model</span>:<span class=\"hljs-string\">'a4'</span>, <span class=\"hljs-attr\">year</span>:<span class=\"hljs-number\">2020</span>}\n  <span class=\"hljs-keyword\">const</span> details = {<span class=\"hljs-attr\">color</span>:<span class=\"hljs-string\">'red'</span>, <span class=\"hljs-attr\">type</span>:<span class=\"hljs-string\">'Coupe'</span>, <span class=\"hljs-attr\">year</span>:<span class=\"hljs-number\">2021</span>}\n\n\n  <span class=\"hljs-keyword\">const</span> combined = <span class=\"hljs-built_in\">Object</span>.assign({},car,details)\n  <span class=\"hljs-built_in\">console</span>.log(combined)\n  <span class=\"hljs-comment\">//output {name:'Audi', model:'a4', color:'red', type:'Coupe', year:2021}</span>\n</pre><h3><br></h3><h3>Note Here: if both objects have the same property, it will take the value of the second object</h3><p><br></p><h1>4-Object.entries()</h1><h1><strong>return array for each key:value pairs in object wrapped in array</strong></h1><p><br></p><pre class=\"ql-syntax\" spellcheck=\"false\">  <span class=\"hljs-keyword\">const</span> car = {<span class=\"hljs-attr\">name</span>:<span class=\"hljs-string\">'Audi'</span>, <span class=\"hljs-attr\">model</span>:<span class=\"hljs-string\">'a4'</span>, <span class=\"hljs-attr\">year</span>:<span class=\"hljs-number\">2020</span>}\n  <span class=\"hljs-keyword\">const</span> items= <span class=\"hljs-built_in\">Object</span>.entries(car)\n  <span class=\"hljs-built_in\">console</span>.log(items)\n  <span class=\"hljs-comment\">//output [ [name:'Audi'], [model:'a4'], [year:2020] ]</span>\n</pre><p><br></p><h1><span class=\"ql-size-large\">5-Object.freeze()</span></h1><p><strong class=\"ql-size-large\">it makes the object no longer able to change</strong></p><p><br></p><pre class=\"ql-syntax\" spellcheck=\"false\"><span class=\"hljs-keyword\">const</span> car = {<span class=\"hljs-attr\">name</span>:<span class=\"hljs-string\">'Audi'</span>, <span class=\"hljs-attr\">model</span>:<span class=\"hljs-string\">'a4'</span>, <span class=\"hljs-attr\">year</span>:<span class=\"hljs-number\">2020</span>}\n  <span class=\"hljs-built_in\">Object</span>.freeze(car)\n\n  car.year = <span class=\"hljs-number\">2021</span>\n  <span class=\"hljs-built_in\">console</span>.log(car)\n  <span class=\"hljs-comment\">//output [ [name:'Audi'], [model:'a4'], [year:2020] </span>\n</pre><h3><br></h3><h3>Note Here: to check if the object is frozen or not use Object.isFrozen(car), if frozen it will return true, and false if not</h3><p><br></p><h1><span class=\"ql-size-large\">6-Object.seal()</span></h1><p><strong class=\"ql-size-large\">Similar to Object.freeze() but the difference is this lets you change the property of the object as long they are writeable (Not methods) But not delete or add new</strong></p><p><br></p><pre class=\"ql-syntax\" spellcheck=\"false\">  <span class=\"hljs-keyword\">const</span> car = {<span class=\"hljs-attr\">name</span>:<span class=\"hljs-string\">'Audi'</span>, <span class=\"hljs-attr\">model</span>:<span class=\"hljs-string\">'a4'</span>, <span class=\"hljs-attr\">year</span>:<span class=\"hljs-number\">2020</span>}\n  <span class=\"hljs-built_in\">Object</span>.seal(car)\n\n  <span class=\"hljs-comment\">//this will work</span>\n  car.year = <span class=\"hljs-number\">2021</span>\n  <span class=\"hljs-built_in\">console</span>.log(car.year) <span class=\"hljs-comment\">// output 2021</span>\n\n  <span class=\"hljs-comment\">//this will Not work</span>\n  <span class=\"hljs-keyword\">delete</span> car.year\n  <span class=\"hljs-built_in\">console</span>.log(car.year) <span class=\"hljs-comment\">// output 2021</span>\n</pre><h2>Note Here: to check if the object is sealed or not use Object.isSealed(car), if sealed it will return true, and false if not.</h2><p><br></p><p><br></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(10, 10, 10);\" class=\"ql-size-large\">That's it for today, I hope this was useful to you.</span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(10, 10, 10);\" class=\"ql-size-large\">Thank you, and have a productive day❤️</span></p>",
+        "image": "images/84c68954-30bd-4de7-a648-d8a6dffb235b",
+        "discussion": [],
+        "date": "2021-01-15",
+        "time": "9:47 pm",
+        "createdAt": "2021-01-16T02:47:56.901Z",
+        "updatedAt": "2021-04-24T22:48:42.015Z",
+        "__v": 5,
+        "active": true,
+        "site_description": "undefined"
+    },
+    {
+        "reactions": {
+            "highfive": {
+                "users": [],
+                "counter": 0
+            },
+            "like": {
+                "users": [],
+                "counter": 0
+            },
+            "dislike": {
+                "users": [],
+                "counter": 0
+            }
+        },
+        "category": {
+            "name": "marketing",
+            "sub": null
+        },
+        "shares": [],
+        "tags": [],
+        "views": 68,
+        "title": "Automated Marketing Emails to Drive Sales Hands Free",
+        "content": "<h2>Why Automated Emails Are Great for&nbsp;Business</h2><p><br></p><p><span class=\"ql-size-large\">In&nbsp;e-commerce,&nbsp;automated email (a.k.a triggered email) is&nbsp;an&nbsp;email that is&nbsp;automatically sent in&nbsp;response to&nbsp;a&nbsp;certain customer action in&nbsp;your online store.</span></p><p><br></p><p><span class=\"ql-size-large\">For example, someone might add items to&nbsp;their cart but bounce halfway through checkout. Or, maybe it’s just been a&nbsp;while since a&nbsp;particular customer visited your store. Whenever a&nbsp;certain criterion is&nbsp;met (for example, “three days after a&nbsp;purchase”), an&nbsp;email will be&nbsp;triggered to&nbsp;send.</span></p><p><span class=\"ql-size-large\">Some of&nbsp;the&nbsp;benefits of&nbsp;automated marketing emails:</span></p><p><br></p><ul><li><strong class=\"ql-size-large\">Increased sales</strong><span class=\"ql-size-large\">. Unlike manual emails, automated trigger emails are tailored to&nbsp;a&nbsp;variety of&nbsp;customer segments, so&nbsp;this tool is&nbsp;very scalable. Unlike regular mass mailing, automated emails are sent at&nbsp;the&nbsp;right moment for&nbsp;each customer, delivering higher open rates and&nbsp;generating more conversions.</span></li><li><strong class=\"ql-size-large\">Reduced effort</strong><span class=\"ql-size-large\">. Уou probably get what the&nbsp;word automated is&nbsp;indicating. Once enabled, automated emails are sent out automatically, meaning no&nbsp;action is&nbsp;required from the&nbsp;store owner directly.</span></li><li><strong class=\"ql-size-large\">More&nbsp;cost-effective</strong><span class=\"ql-size-large\">. Retaining an&nbsp;existing customer is&nbsp;always cheaper than acquiring a&nbsp;new one. </span></li><li><br></li></ul><p><span class=\"ql-size-large\">Marketing automation is&nbsp;a&nbsp;hot trend:&nbsp;</span><a href=\"https://www.hubspot.com/marketing-statistics?__hstc=116189785.d5d43d672bc55ad74af6fe8f0e55f1e7.1613048143738.1613048143738.1613256277261.2&amp;__hssc=116189785.2.1613256277261&amp;__hsfp=2669978917\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(0, 100, 184);\" class=\"ql-size-large\">67% of&nbsp;marketing leaders</a><span class=\"ql-size-large\">&nbsp;currently use a&nbsp;marketing automation platform and&nbsp;</span><a href=\"https://www.forbes.com/sites/christinecrandell/2017/08/15/why-your-marketing-automation-roi-is-in-the-lost-and-found/#58048e631cb9\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(0, 100, 184);\" class=\"ql-size-large\">82% of&nbsp;marketers</a><span class=\"ql-size-large\">&nbsp;point out a&nbsp;positive return on&nbsp;investment from marketing automation&nbsp;— including automated emails. </span></p>",
+        "image": "images/1d80876b-de9b-4d6b-9765-e5603a2d2022",
+        "discussion": [],
+        "date": "2021-02-13",
+        "time": "5:54 pm",
+        "createdAt": "2021-02-13T22:54:35.522Z",
+        "updatedAt": "2021-05-01T17:29:42.876Z",
+        "__v": 12,
+        "active": true,
+        "site_description": "undefined"
+    },
+    {
+        "reactions": {
+            "highfive": {
+                "users": [],
+                "counter": 0
+            },
+            "like": {
+                "users": [],
+                "counter": 0
+            },
+            "dislike": {
+                "users": [],
+                "counter": 0
+            }
+        },
+        "category": {
+            "name": "technology",
+            "sub": null
+        },
+        "shares": [],
+        "tags": [
+            "tech",
+            "iot"
+        ],
+        "views": 35,
+        "title": "Internet Of Things | انترنت الاشياء",
+        "content": "<p class=\"ql-direction-rtl ql-align-right\"><span style=\"background-color: rgb(255, 255, 255);\" class=\"ql-size-large\">الانترنت بقي متاح اكتر من الاول بكتير, ثمن الاتصال به بيبقي ارخص يوم بعد يوم, اجهزه كتير بقت  عندها قدر للاتصال بـ الواي فاي و معظمها موجود فيها حساسات للاستشعار, ثمن التكنوجيا بقي يقل, التوصل مع الاجهزه  بيزيد.</span></p><p class=\"ql-direction-rtl ql-align-right\"><span style=\"background-color: rgb(255, 255, 255);\" class=\"ql-size-large\">كل ده بيخلق بيئه مثاليه لعاصفه من انترنت الاشياء IoT</span></p><p class=\"ql-direction-rtl ql-align-right\"><br></p><h2 class=\"ql-direction-rtl ql-align-right\"><span style=\"background-color: rgb(255, 255, 255);\">ايه هو انترنت الاشياء  IoT؟</span></h2><p class=\"ql-direction-rtl ql-align-right\"><br></p><p class=\"ql-direction-rtl ql-align-right\"><span class=\"ql-size-large\">ببساطه,  هو توصيل اي جهاز بالانترنت, و الكلام ده بينطبق علي اي جهاز حرفيا.</span></p><p class=\"ql-direction-rtl ql-align-right\"><span class=\"ql-size-large\">زي ماكينه القهوه مثلا او الغساله او حتي لمبه,من الاخر اي حاجه تيجي في بالك,  اي جهاز يقدر يتوصل بالانترنت و ناخد منه البيانات اللي ممكن نحتاجها عشان تعمل وظيفه معينه</span></p><p class=\"ql-direction-rtl ql-align-right\"><span class=\"ql-size-large\">الكلام ده برضه ينطبق علي مكونات الالات علي سبيل المثال: محرك الطائره النفاثه.</span></p><p class=\"ql-direction-rtl ql-align-right\"><br></p><p class=\"ql-direction-rtl ql-align-right\"><span class=\"ql-size-large\">شركه التحليلات Gartner بتقول ان السنه دي -2020- هيكون فيه اكتر من 27 مليار جهاز متصل بالانترنت و احنا هنا مبتكلمش علي التيليفونات المحموله احنا هنا بنتكلم علي الاجهزه اللي قولنا عليها فوق, في ناس كمان بتتوقع ان الرقم ده يوصل لـ 100 مليار جهاز .</span></p><p class=\"ql-direction-rtl ql-align-right\"><br></p><p class=\"ql-direction-rtl ql-align-right\"><span class=\"ql-size-large\">انترنت الاشياء عباره عن شبكه عملاقه من \"الاشياء\" المتصله (الي تشمل الاشخاص) العلاقه بعد كده هتكون ما بين الناس-الناس  و الناس-الاشياء و الاشياء-الاشياء.</span></p><p class=\"ql-direction-rtl ql-align-right\"><br></p><h2 class=\"ql-direction-rtl ql-align-right\"> ازاي الكلام ده هيفرق معاك؟</h2><p class=\"ql-direction-rtl ql-align-right\"><br></p><p class=\"ql-direction-rtl ql-align-right\"><span class=\"ql-size-large\">قانون المستقبل هيكون اي حاجه هتبقي متصله بالانترنت هتكون متصله بالعالم كله</span></p><p class=\"ql-direction-rtl ql-align-right\"><br></p><p class=\"ql-direction-rtl ql-align-right\"><span class=\"ql-size-large\">بس ليه اصلا نحتاج كل الحاجات دي تكون بتتوصل مع بعض!</span></p><p class=\"ql-direction-rtl ql-align-right\"><br></p><p class=\"ql-direction-rtl ql-align-right\"><span class=\"ql-size-large\">في امثله كتير توضح الصوره محتمله للوضع اللي هنكون فيه, علي سبيل المثال:</span></p><p class=\"ql-direction-rtl ql-align-right\"><span class=\"ql-size-large\"> تخيل انك في طريقك لاجتماع و الطريق زحمه, عربيتك تقدر لوحدها تبعت للناس اللي رايحلهم ان هتتأخر شويه بسبب الزحمه.</span></p><p class=\"ql-direction-rtl ql-align-right\"><span class=\"ql-size-large\">طب ايه رأيك لما المنبه بتاعك يبقي عارف انك المفروض تصحه الساعه 6 فـ يبعت رساله للماكينه القهوه انها تبدأ تحضرها!</span></p><p class=\"ql-direction-rtl ql-align-right\"><span class=\"ql-size-large\">طب مثلا الهدوم اللي انت لابسها تقدر تعرفك انت امتي و فين كنت نشيط و مٌنتج و تتواصل مع الاجهزه اللي بتسخدمها و انت بتشتغل؟</span></p><p class=\"ql-direction-rtl ql-align-right\"><span class=\"ql-size-large\">بالقياس علي كده حاجات كتير جداا تقدر تتعمل ب انترنت الاشياء.</span></p><p class=\"ql-direction-rtl ql-align-right\"><br></p><p class=\"ql-direction-rtl ql-align-right\"><span class=\"ql-size-large\">على نطاق أوسع ،</span></p><p class=\"ql-direction-rtl ql-align-right\"><span class=\"ql-size-large\"> يمكن تطبيق إنترنت الأشياء على حاجات زي شبكات النقل: \"المدن الذكية\" التي ممكن أنها تساعدنا في تقليل النفايات وتحسين الكفاءة لأشياء زي استخدام الطاقة ؛ و ده هيساعدنا على فهم وتحسين طريقة عملنا وحياتنا.</span></p><p class=\"ql-direction-rtl ql-align-right\"><br></p><h2 class=\"ql-direction-rtl ql-align-right\">طب و بعدين؟</h2><p class=\"ql-direction-rtl ql-align-right\"><br></p><p class=\"ql-direction-rtl ql-align-right\"><span class=\"ql-size-large\">في محادثات حول إنترنت الأشياء ( وما زالت منذ عدة سنوات ) في جميع أنحاء العالم  لمحاوله فهم ازاي هيأثر الموضوع ده على حياتنا. و بيحاوله برضه انهم يفهمه ماهية الفرص والتحديات الكتيره اللي هتكون مع بدء المزيد من الأجهزة للانضمام إلى إنترنت الأشياء. دلوقتي ، أفضل شيء نقدر نعمله به هو تثقيف نفسنا حول ماهية إنترنت الأشياء والتأثيرات المحتملة التي ممكن رؤيتها على كيفية عملنا وحياتنا.</span></p><p><br></p>",
+        "image": "images/5f4314ae-583a-404f-bae6-fb107a7e2256",
+        "discussion": [],
+        "date": "2021-02-21",
+        "time": "1:06 am",
+        "createdAt": "2021-02-21T06:06:26.798Z",
+        "updatedAt": "2021-05-11T12:06:26.249Z",
+        "__v": 0,
+        "active": true,
+        "site_description": "undefined"
+    },
+    {
+        "reactions": {
+            "highfive": {
+                "users": [],
+                "counter": 0
+            },
+            "like": {
+                "users": [],
+                "counter": 0
+            },
+            "dislike": {
+                "users": [],
+                "counter": 0
+            }
+        },
+        "category": {
+            "name": "[object Object]",
+            "sub": null
+        },
+        "shares": [],
+        "tags": [
+            "wix",
+            "godaddy"
+        ],
+        "views": 15,
+        "title": "برمجه خاصه ولا منصه انشاء المواقع",
+        "content": "<blockquote class=\"ql-align-right\">ليه تعمل الموقع بتاعك مع شركه سوفت وير بدل ما في منصات بتديك حاجه جاهزه بمبلغ شهري?</blockquote><p class=\"ql-align-right\"><br></p><p class=\"ql-align-right\"><br></p><blockquote class=\"ql-align-right\">أبتدي الموقع مع شركه كذا اللي عندهم حاجات جاهزه و لما تكبر روح لشركة تعمل الموقع برمجه خاصه.</blockquote><p class=\"ql-align-right\"><br></p><h4 class=\"ql-align-right\"><br></h4><h4 class=\"ql-align-right\">اكيد لما سألت علي حد عشان يعملك موقع لشركتك سمعت كلام كتير من ده!</h4><h4 class=\"ql-align-right\">احنا هنا مش جايين نقولك ابعد عن المواقع دي او استخدمها احنا هنقولك الفرق بين المنصه اللي بتديك موقع جاهز و بين انك تعمله مع شركه سوفت وير و يبقي برمجه خاصه و في الاخر طبعا ليك حريه الاختيار في اللي يناسبك</h4><p class=\"ql-align-right\"><br></p><p class=\"ql-align-right\"><br></p><h3 class=\"ql-align-right\"><img src=\"https://static.xx.fbcdn.net/images/emoji.php/v9/tc0/1.5/16/2b55.png\" alt=\"⭕\" height=\"16\" width=\"16\"> الامكانيات:</h3><p class=\"ql-align-right\">- الموقع الجاهز:</p><p class=\"ql-align-right\">امكانياته محدوده و مستحيل تغير فيه حاجه لازم ترضي بالأمر الواقع و تقبل تكون زيك زي غيرك.</p><p class=\"ql-align-right\">- البرمجه الخاصه:</p><p class=\"ql-align-right\">جميع الامكانيات مسخره عشان تخدم فكرتك و الموقع بيكون متفصل علي شغلك.</p><p class=\"ql-align-right\"><br></p><p class=\"ql-align-right\"><br></p><h3 class=\"ql-align-right\"><img src=\"https://static.xx.fbcdn.net/images/emoji.php/v9/tc0/1.5/16/2b55.png\" alt=\"⭕\" height=\"16\" width=\"16\">التوسع:</h3><p class=\"ql-align-right\">لو فرضنا انك عامل متجر الكتروني تبيع عليه منتجاتك و فتحت فرع جديد و محتاج ان العميل يعرف المنتج ده موجود في اي فرع من الفروع ولا موجود في كله؟</p><p class=\"ql-align-right\">-المواقع الجاهزه:</p><p class=\"ql-align-right\">مستحيل تديك اوبشن زي ده لازم و تفضل زي ما انت مفيش اي مجال</p><p class=\"ql-align-right\">للتوسع.</p><p class=\"ql-align-right\">-البرمجه الخاصه:</p><p class=\"ql-align-right\">هيتعمل بسهوله جدا و في خلال كام يوم هتلاقيه جاهز و هتلاقي نفسك بتكبر علي ارض الوقع و علي الانترنت</p><p class=\"ql-align-right\"><br></p><p class=\"ql-align-right\"><br></p><h3 class=\"ql-align-right\"><img src=\"https://static.xx.fbcdn.net/images/emoji.php/v9/tc0/1.5/16/2b55.png\" alt=\"⭕\" height=\"16\" width=\"16\"> التميز:</h3><p class=\"ql-align-right\">لو فكرتك مميزه و في حاجه محدده في دماغك عايزها تبقي موجود.</p><p class=\"ql-align-right\">__المواقع الجاهزه: مستحيل تتعمل حاجه خاصه ليك حتي لو هتدفع لهم فلوس اللي يمشي علي غيرك يمشي عليك.</p><p class=\"ql-align-right\">__البرمجه الخاصه : في مهندسين موجودين عشان يسمعك كويس و يفهم دماغك و ينفذلك الحاجه اللي تميزك عن غيرك مهما كنات.</p><p class=\"ql-align-right\"><br></p><p class=\"ql-align-right\"><br></p><h3 class=\"ql-align-right\"><img src=\"https://static.xx.fbcdn.net/images/emoji.php/v9/tc0/1.5/16/2b55.png\" alt=\"⭕\" height=\"16\" width=\"16\"> المرونه:</h3><p class=\"ql-align-right\">اي حد عنده موقع بيبقي محتاج ديما يغير حاجات فيه.</p><p class=\"ql-align-right\">حاجه بتدايق العملاء في الموقع محتاج تتشال او حاجه ملهاش لازمه, التفاصيل الصغيره اللي زيك كده.</p><p class=\"ql-align-right\">-المواقع الجاهزه: كلعاده مستحيل, مفيش مجال لتغير اي حاجه.</p><p class=\"ql-align-right\">-_البرمجه الخاصه: انت عارف خلاص, مش محتاج اقولك ان موقعك مرن لاقصي درجه تتخيلها انت بس كل اللي عليك تطلب اللي انت عايزه.</p><p class=\"ql-align-right\"><br></p><p class=\"ql-align-right\"><br></p><h4 class=\"ql-align-right\">نيجي بقي لاخر نقطه و اهم نقطه بالنسبلك و اللي بشكل عام هي اللي بتحدد القرار سواء هتأجر حاجه جاهزه ولا هتشتري حاجه خاصه.</h4><p class=\"ql-align-right\"><br></p><p class=\"ql-align-right\"><br></p><h3 class=\"ql-align-right\"><img src=\"https://static.xx.fbcdn.net/images/emoji.php/v9/tc0/1.5/16/2b55.png\" alt=\"⭕\" height=\"16\" width=\"16\"> الفلوس:</h3><p class=\"ql-align-right\">هقولك انك انت فاكر انه ارخص عشان بتدفع مبلغ صغير كل شهر بس هتلاقي انك مع الوقت و علي المدي القريب جدا هتوصل انك تكون دفعت نفس تمن الموقع اللي متبرمج برمجه خاصه</p><p class=\"ql-align-right\">-بالمناسبه الموقع مش بمليون جنيه ولا حاجه بالعكس الاسعار دلوقتي كويسه جدا -</p><p class=\"ql-align-right\">بس للاسف وقتها هيكون الموقع مش بتاعك انت ملزم انك تفضل تدفع علي طول عشان تعرف تستخدمه</p><p class=\"ql-align-right\">خد نفس الفكره بظبط و طبقها علي العقارات مثلا, ليه اسكن في ايجار و ادفع فلوس كل شهر في حاجه رايحه في الارض لما ممكن احوش نفس المبلغ و احطه في حاجه تمليك, وصلت!</p><p class=\"ql-align-right\">و لو ناوي تكمل علي الانترنت و ده اكيد انك هتكمل,</p><p class=\"ql-align-right\">هتروح في الاخر لشركه تعمله برمجه خاصه و طبعا هتدفع ثمن الموقع و كده تبقي دفعته كذا مره</p><p class=\"ql-align-right\">شويه التفاصيل الصغيره دي لازم تاخد بالك منها عشان حتي لو تجاهلنا كل الاسباب اللي اتكلمنا عليها اللي مينفعش نتجهلها و بصينا علي الفلوس برضه هتلاقي انك دفعت ثمن الموقع و يمكن اكتر.</p><p class=\"ql-align-right\">و كده يبقي قولنا شويه تفاصيل و الكلام ده طبعا علي سبيل المثال لا الحصر عشان في تفاصيل كتير</p><p class=\"ql-align-right\">ممكن نقول عليها.</p><p class=\"ql-align-right\"><br></p><p class=\"ql-align-right\">دلوقتي الاختيار ليك شوف ايه اللي يناسبك و اعمله!</p>",
+        "image": "images/b29fd6c8-ecb9-4df7-866d-5a525c478db0",
+        "discussion": [],
+        "date": "2021-04-12",
+        "time": "1:28 pm",
+        "createdAt": "2021-04-12T17:28:28.606Z",
+        "updatedAt": "2021-05-21T20:19:57.715Z",
+        "__v": 0,
+        "active": true,
+        "site_description": "undefined"
+    }
+]

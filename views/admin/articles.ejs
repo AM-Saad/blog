@@ -46,20 +46,20 @@
 
                                     <div class="p-medium">
                                         <div class="form-group">
-                                            <label for="name">Title</label>
-                                            <input type="text" name="title" id="name" />
+                                            <label for="title">Title</label>
+                                            <input type="text" name="title" id="title" />
                                         </div>
                                         <div class="form-group">
                                             <label for="site_description">Site Description</label>
                                             <input type="text" name="site_description" id="site_description" />
                                         </div>
                                         <div class="form-group">
+                                            <label for="active">Active</label>
                                             <input type="checkbox" name="active" id="active" v-model="active" />
-                                            <label for="active"></label>
                                         </div>
                                         <div class="form-group">
                                             <label for="image">image</label>
-                                            <input type="file" name="image" id="itemImg" />
+                                            <input type="file" name="image" id="articleImg" />
                                         </div>
                                         <div class="form-group grid">
                                             <label for="category">category</label>
@@ -79,8 +79,12 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="tags">Article Tags:</label>
-                                            <input class="currentInput input" id="tags" type="text"
-                                                placeholder="Type Tags Then Press Enter" />
+                                            <div class="flex">
+
+                                                <input class="currentInput input" id="tag" type="text"
+                                                    placeholder="Type Tags Then Press Enter" />
+                                                    <a class="add-tag btn btn-small">Add</a>
+                                            </div>
                                             <div class="tags flex">
                                                 <li class="options btn btn-info tag-span">
 
@@ -90,19 +94,12 @@
                                         </div>
                                     </div>
                                     <div id="NewArticleForm">
-                                        <div style="display: grid">
-                                            <label for="articleTitle">Article Title:</label>
-                                            <input style="padding: var(--scnd-padding); border: 1.3px solid #999;"
-                                                type="text" name="articleTitle" id="articleTitle">
-                                        </div>
-                                        <div id="textFormater">
 
+                                        <div id="textFormater">
                                             <div class="editor"></div>
-                                            <button class="btn-info" id="addInput">Add</button>
                                         </div>
                                     </div>
                                     <input type="file" id="getFile" @change="uploadImage($event)" class="none" />
-
                                     <!-- <quill v-model="content" :config="config" :options="editorOption"></quill> -->
                                     <button v-if="!edit" id="addNewitem" @click.prevent="createArticle()"
                                         class="btn btn-success" type="button">

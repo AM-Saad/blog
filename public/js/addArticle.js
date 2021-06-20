@@ -9,7 +9,7 @@
         allArticles: [],
         targetInput: '',
         atricleContent: '',
-
+        tags: [],
 
         init: function () {
             addArticle.readyStatus()
@@ -23,6 +23,8 @@
         },
         bindEvents: function () {
             this.$addInput.on('click', this.submitArticle.bind(this))
+
+
         },
 
         renderArticleForm: (lesson) => {
@@ -67,12 +69,11 @@
             this.openEdiableBox()
         },
 
-
+    
         submitArticle: function (e) {
             $('#addInput').off('click')
 
-            const inputsVal = $('.ql-editor').html();
-            const articleTitle = $('#articleTitle').val();
+         
 
             $.ajax({
                 url: "/blog/createNewAritcle",

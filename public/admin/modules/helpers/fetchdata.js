@@ -37,7 +37,7 @@ async function fetchdata(token, url, method, body, contentType) {
                 res = await fetch(url, {
                     method: method,
                     headers: {
-                        'X-CSRF-Token': token
+                        'X-CSRF-Token': token,
                     }
                 })
             }

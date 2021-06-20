@@ -194,7 +194,7 @@
 
             console.log(title);
             console.log(content);
-            if (!title.replace(/\s/g, '').length || !content.replace(/\s/g, '').length) {
+            if (!title.replace(/\s/g, '').length || !content.replace(/\s/g, '').length || !site_description.replace(/\s/g, '').length || !this.itemImg) {
                 showmessage('All Stared <span class="c-r">"*"</span> fields required ', 'info', 'body')
                 return false
             }

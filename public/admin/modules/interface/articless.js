@@ -39,9 +39,8 @@
 
             $('body').on('click', '.content-item', this.openItem.bind(this));
             $('body').on('click', '.close-single-item', this.closeSingleCustomer.bind(this))
-            $('body').on('click', '.customer-shipments .close-shipments', this.closeShipments.bind(this))
 
-            $('.new-item-box form').on('submit', this.saveItem.bind(this))
+            $('.save-item').on('click', this.saveItem.bind(this))
 
 
             $('.add-tag').on('click', this.addTag.bind(this))

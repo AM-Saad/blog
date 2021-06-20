@@ -217,6 +217,11 @@ exports.editArticle = async (req, res, next) => {
         const article = await Article.findById(articleId)
         if (!article) { return res.status(404).json({ message: 'Somthing went wrong. Please try again.', messageType: 'warning' }) }
         if (req.file) {
+            if (article.image) {
+                console.log('has');
+                const relative_path = process.cwd()
+                fs.unlinkSync(relative_path + '/' + article.image);
+            }
             image = req.file.path.replace("\\", "/");
         } else {
             image = article.image
@@ -245,11 +250,15 @@ exports.deleteArticle = async (req, res, next) => {
     const articleId = req.params.id;
     try {
         const article = await Article.findById(articleId);
+        if (article.image) {
+            const relative_path = process.cwd()
+            fs.unlinkSync(relative_path + '/' + article.image);
+        }
         if (!article) return res.status(404).json({ message: 'Somthing went wrong. Please try again.', messageType: 'warning' })
         await article.remove()
         return res
             .status(200)
-            .json({ message: "article Delete",  messageType: 'success', articleId: articleId });
+            .json({ message: "article Delete", messageType: 'success', articleId: articleId });
     } catch (error) {
         if (!error.statusCode) {
             error.statusCode = 500;

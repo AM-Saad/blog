@@ -42,6 +42,7 @@
 
             $('.save-item').on('click', this.saveItem.bind(this))
             $('body').on('click', '.delete-item', this.deleteItem.bind(this))
+            $('body').on('click', '.edit-item', this.editItem.bind(this))
 
 
             $('.add-tag').on('click', this.addTag.bind(this))
@@ -195,7 +196,7 @@
 
             console.log(title);
             console.log(content);
-            if (!title.replace(/\s/g, '').length || !content.replace(/\s/g, '').length || !site_description.replace(/\s/g, '').length || !this.itemImg) {
+            if (!title.replace(/\s/g, '').length || !content.replace(/\s/g, '').length || !site_description.replace(/\s/g, '').length) {
                 showmessage('All Stared <span class="c-r">"*"</span> fields required ', 'info', 'body')
                 return false
             }
@@ -235,20 +236,64 @@
             const newform = this.createItemForm()
             if (newform != false) {
                 $('.new-item-box').addClass('loader-effect')
-                let data = await fetchdata(this.jwt, '/admin/api/articles', 'post', newform, false)
+                if (this.editing) {
+                    data = await fetchdata(this.jwt, `/admin/api/articles/${this.opened}`, 'put', newform, false)
+                } else {
+                    data = await fetchdata(this.jwt, '/admin/api/articles', 'post', newform, false)
+                }
                 $('.new-item-box').removeClass('loader-effect')
                 if (data != null) {
                     showmessage(data.json.message, data.json.messageType, 'body')
+                    if (this.editing) {
+                        this.updateItem(data.json.article)
+                        this.togglecreateItembox()
+                        createSingleItem(data.json.article)
+                        $(`input[value="${this.opened}"]`).parents('.content-item').removeClass('loader-effect')
 
-                    this.allItems.push(data.json.article)
-                    this.togglecreateItembox()
-                    this.resetData()
+                    } else {
+                        this.allItems.push(data.json.article)
+                        this.togglecreateItembox()
+                    }
+                    this.updateItemElm(data.json.article)
+
                 }
 
             }
 
         },
+        updateItem: async function (updatedObj) {
+            const oldIndex = config.allItems.findIndex(d => d._id.toString() === updatedObj._id.toString())
+            config.allItems[oldIndex] = updatedObj
+            return oldIndex
+        },
+        updateItemElm: function (updatedObj) {
+            const exisitInput = $(`input[value="${updatedObj._id}"]`).parents('.content-item')
+            const newDomElm = createitemBox(updatedObj)
+            if (exisitInput.length <= 0) return $('.content .items').append(newDomElm);
+            if (exisitInput.length > 0) return exisitInput.replaceWith(newDomElm)
+        },
+        editItem: function (e) {
+            e.preventDefault()
+            e.stopPropagation()
+            const itemId = findItemId('itemId', e)
+            const item = this.allItems.find(c => c._id.toString() == itemId.toString())
+            this.opened = item._id
+            this.itemImg = item.image
+            this.editing = true
 
+            $('#title').val(item.title);
+            $('.ql-editor').html(item.content)
+
+            document.getElementById('active').checked = item.active
+            $('#site_description').val(item.site_description)
+            $('#location').val(item.location)
+            $('#category').val(item.category.name).trigger('change')
+
+            this.tags.forEach(sub => $('.tags').append(`<button data-sub="${sub}"> <i class="fas fa-times delete-sub"></i>${sub} </button>`))
+
+            $('.new-item-box').addClass('slide')
+
+        },
         deleteItem: async function (e) {
             e.stopPropagation()
 
@@ -281,7 +326,7 @@
         resetData: function (e) {
             document.getElementById('active').checked = true
             $('#title').val('');
-            ('.ql-editor').html('<p><br></p>')
+            $('.ql-editor').html('<p><br></p>')
             $('.tags').empty();
             $('#site_description').val('')
             $('#location').val('')

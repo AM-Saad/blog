@@ -241,20 +241,25 @@
                 } else {
                     data = await fetchdata(this.jwt, '/admin/api/articles', 'post', newform, false)
                 }
+                console.log(data);
+                console.log('there..');
+
                 $('.new-item-box').removeClass('loader-effect')
-                if (data != null) {
+                if (data) {
                     showmessage(data.json.message, data.json.messageType, 'body')
                     if (this.editing) {
+                        console.log('editing');
                         this.updateItem(data.json.article)
-                        this.togglecreateItembox()
                         createSingleItem(data.json.article)
                         $(`input[value="${this.opened}"]`).parents('.content-item').removeClass('loader-effect')
-
                     } else {
+                        console.log('New');
                         this.allItems.push(data.json.article)
-                        this.togglecreateItembox()
                     }
+                    this.togglecreateItembox()
+
                     this.updateItemElm(data.json.article)
+                    this.resetData()
 
                 }
 
@@ -311,7 +316,6 @@
                         this.closeSingleItem()
                         showmessage('Deleted!', data.json.messageType, 'body')
                     }
-
 
                     $('.single-item .inside-wrapper').removeClass('loader-effect')
                     $(`input[value="${itemId}"]`).parents('.content-item').removeClass('loader-effect')

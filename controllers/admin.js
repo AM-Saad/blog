@@ -168,8 +168,9 @@ exports.createArticle = async (req, res, next) => {
         });
 
         await article.save();
-        return await res.status(201).json({
+        return res.status(201).json({
             message: 'Created',
+            messageType: 'success',
             article: article
         });
     } catch (error) {
@@ -237,7 +238,7 @@ exports.editArticle = async (req, res, next) => {
         article.site_description = site_description
         // article.delta = { ...delta }
         await article.save();
-        return await res.status(200).json({ message: 'Article Updated', messageType: 'success', article: article });
+        return res.status(200).json({ message: 'Article Updated', messageType: 'success', article: article });
     } catch (error) {
         if (!error.statusCode) {
             error.statusCode = 500;

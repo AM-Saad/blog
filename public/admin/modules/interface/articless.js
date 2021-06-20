@@ -38,9 +38,10 @@
 
 
             $('body').on('click', '.content-item', this.openItem.bind(this));
-            $('body').on('click', '.close-single-item', this.closeSingleCustomer.bind(this))
+            $('body').on('click', '.close-single-item', this.closeSingleItem.bind(this))
 
             $('.save-item').on('click', this.saveItem.bind(this))
+            $('body').on('click', '.delete-item', this.deleteItem.bind(this))
 
 
             $('.add-tag').on('click', this.addTag.bind(this))
@@ -248,6 +249,35 @@
 
         },
 
+        deleteItem: async function (e) {
+            e.stopPropagation()
+
+            if (confirm("Do you want to delete this Item?")) {
+
+                const itemId = findItemId('itemId', e)
+                $('.single-item .inside-wrapper').addClass('loader-effect')
+                $(`input[value="${itemId}"]`).parents('.content-item').addClass('loader-effect')
+                s
+                if (itemId) {
+                    const data = await fetchdata(this.jwt, `/admin/api/articels/${itemId}`, 'delete', true)
+                    if (data != null) {
+                        $(`input[value="${itemId}"]`).parents('.content-item').fadeOut(300).remove()
+                        this.allItems = this.allItems.filter(c => c._id.toString() != itemId.toString())
+                        this.closeSingleItem()
+                        showmessage('Deleted!', data.json.messageType, 'body')
+                    }
+
+
+                    $('.single-item .inside-wrapper').removeClass('loader-effect')
+                    $(`input[value="${itemId}"]`).parents('.content-item').removeClass('loader-effect')
+
+                }
+            } else {
+
+                e.preventDefault()
+            }
+
+        },
         resetData: function (e) {
             document.getElementById('active').checked = true
             $('#title').val('');
@@ -271,7 +301,7 @@
         },
 
 
-        closeSingleCustomer: function () {
+        closeSingleItem: function () {
             // config.opened = null
             $('.single-item').removeClass('scale')
         },
@@ -288,7 +318,7 @@
                         $(`input[value="${itemId}"]`).parents('.content-item').fadeOut(300).remove()
 
                         this.allItems = this.allItems.filter(c => c._id.toString() != itemId.toString())
-                        this.closeSingleCustomer()
+                        this.closeSingleItem()
                         showmessage('Deleted', data.json.messageType, 'body')
                     }
 

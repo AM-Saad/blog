@@ -170,7 +170,7 @@ exports.createArticle = async (req, res, next) => {
         await article.save();
         return res.status(201).json({
             message: 'Created',
-            messageType:'success'
+            messageType:'success',
             article: article
         });
     } catch (error) {

@@ -43,7 +43,7 @@ async function fetchdata(token, url, method, body, contentType) {
             }
         }
         const json = await res.json()
-        if (res.status == 200 || res.json.status == 201) {
+        if (res.status == 200 || res.status == 201) {
             return { res, json }
         } else {
             showmessage(json.message, json.messageType, 'body')

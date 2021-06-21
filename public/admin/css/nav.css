@@ -1,5 +1,5 @@
 .opened-menu #dashboard-menu {
-  margin-right: 0;
+  margin-left: 0;
 }
 
 #top-menu, #dashboard-menu_header {
@@ -56,9 +56,9 @@
   width: 260px;
   transition: 0.3s all ease-in-out;
   z-index: 1;
-  margin-right: -270px;
+  margin-left: -270px;
   background: var(--scnd-color);
-  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
   padding-top: 0;
 }
 

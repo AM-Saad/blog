@@ -10,7 +10,6 @@
 }
 
 body {
-  direction: rtl;
   background-color: #fbfcff;
 }
 
@@ -80,7 +79,7 @@ ul {
   height: auto;
   margin: 5px auto 60px 0px;
   overflow: hidden;
-  /* float: right; */
+  float: right;
   transition: .2s all ease-in-out;
 }
 
@@ -531,6 +530,7 @@ i.close-form {
   background-color: var(--main-color);
   box-shadow: var(--shadow);
   display: flex;
+  justify-content: flex-end;
   /* border: 1.1px solid #ccc; */
 }
 

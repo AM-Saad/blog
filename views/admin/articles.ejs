@@ -6,7 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <%- include('./includes/styles.ejs') %>
+        <style>
+            #textFormater {
+                margin-bottom: var(--l-margin);
+                background: #f9f9f9;
+            }
 
+            .ql-editor {
+
+                min-height: 200px;
+                background: #fff;
+            }
+        </style>
 </head>
 
 <body>
@@ -34,7 +45,7 @@
                 </section>
                 <div class="client-info_basics m-large">
                     <div class="new-item-box slideable">
-                        <form action="/create-item" method="post" class="inside-wrapper">
+                        <form class="inside-wrapper">
                             <div class="form-actions flex f-space-around">
                                 <h3>New Article</h3>
                                 <button type="submit" class="btn btn-success save-item">Create</button>
@@ -45,69 +56,61 @@
                                 <div class="form_inputs">
 
                                     <div class="p-medium">
-                                        <div class="form-group">
-                                            <label for="name">Title</label>
-                                            <input type="text" name="title" id="name" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="site_description">Site Description</label>
-                                            <input type="text" name="site_description" id="site_description" />
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" name="active" id="active" v-model="active" />
-                                            <label for="active"></label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="image">image</label>
-                                            <input type="file" name="image" id="itemImg" />
-                                        </div>
-                                        <div class="form-group grid">
-                                            <label for="category">category</label>
+                                        <div class="grid g-two">
 
-                                            <select name="category" id="category">
+                                            <div class="form-group">
+                                                <label for="title">Title <span class="c-r">*</span></label>
+                                                <input type="text" name="title" id="title" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="site_description">Site Description <span
+                                                        class="c-r">*</span></label>
+                                                <input type="text" name="site_description" id="site_description" />
+                                            </div>
 
-                                            </select>
-                                        </div>
-                                        <div class="form-group grid">
-                                            <label for="location">location</label>
+                                            <div class="form-group">
+                                                <label for="active">Active</label>
+                                                <input type="checkbox" name="active" id="active" v-model="active" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="image">image <span class="c-r">*</span></label>
+                                                <input type="file" name="image" id="articleImg" />
+                                            </div>
+                                            <div class="form-group grid">
+                                                <label for="category">category</label>
 
-                                            <select name="location" id="location">
-                                                <option value="all" class="options">All</option>
-                                                <option value="blog" class="options">Blog</option>
-                                                <option value="portfolio" class="options">Portfolio</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="tags">Article Tags:</label>
-                                            <input class="currentInput input" id="tags" type="text"
-                                                placeholder="Type Tags Then Press Enter" />
-                                            <div class="tags flex">
-                                                <li class="options btn btn-info tag-span">
+                                                <select name="category" id="category">
+                                                </select>
+                                            </div>
+                                            <div class="form-group grid">
+                                                <label for="location">location</label>
 
-                                                    <i class="fas fa-times"></i>
-                                                </li>
+                                                <select name="location" id="location">
+                                                    <option value="all" class="options">All</option>
+                                                    <option value="blog" class="options">Blog</option>
+                                                    <option value="portfolio" class="options">Portfolio</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tags">Article Tags:</label>
+                                                <div class="flex">
+
+                                                    <input class="currentInput input" id="tag" type="text"
+                                                        placeholder="Type Tags Then Press Enter" />
+                                                    <a class="add-tag btn btn-small">Add</a>
+                                                </div>
+                                                <div class="tags flex">
+
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div id="NewArticleForm">
-                                        <div style="display: grid">
-                                            <label for="articleTitle">Article Title:</label>
-                                            <input style="padding: var(--scnd-padding); border: 1.3px solid #999;"
-                                                type="text" name="articleTitle" id="articleTitle">
-                                        </div>
-                                        <div id="textFormater">
 
-                                            <div class="editor"></div>
-                                            <button class="btn-info" id="addInput">Add</button>
-                                        </div>
+                                    </div>
+
+                                    <div id="textFormater">
+                                        <div class="editor"></div>
                                     </div>
                                     <input type="file" id="getFile" @change="uploadImage($event)" class="none" />
-
-                                    <!-- <quill v-model="content" :config="config" :options="editorOption"></quill> -->
-                                    <button v-if="!edit" id="addNewitem" @click.prevent="createArticle()"
-                                        class="btn btn-success" type="button">
-                                        Save
-                                    </button>
 
                                 </div>
                             </div>

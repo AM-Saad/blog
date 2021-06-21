@@ -22,6 +22,8 @@
                         <div class="auth-form_inputs">
                             <h1>Login</h1>
                             <p>Enter Administration Account</p>
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
                             <div class="form-group">
                                 <label for="mobile">Mobile Number</label>
                                 <input class="form-control" type="mobile" name="mobile" id="mobile">

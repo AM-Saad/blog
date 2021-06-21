@@ -23,12 +23,9 @@ function createSingleItem(c, session) {
                     </div>
                     <div class="single-item-core">
                      
-                        <div class="info single-item_name"> <h3> Category Name: ${c.name}</h3> </div>
+                        <div class="info single-item_name"> <h3> Title : ${c.title}</h3> </div>
                         <div class="info"><p>Status: ${c.active ? "Active" : 'Inactive'}</p></div>
-                        <div class="sub-category ${c.subCategory.length > 0 ? '' : 'none'}">
-                            <h4>Sub Category</h4>
-                            <ol class="items flex m-large"></ol>
-                        </div>
+                
                         </div>
                         <div class="images-perview p-relative item-images bg-lightgray"> 
                         <div class="p-relative">
@@ -40,21 +37,7 @@ function createSingleItem(c, session) {
                 </div>
             </div>
     `)
-    c.subCategory.forEach(s => $('.sub-category .items').append(`<li class="m-large p-large"><p>${s}</p></li>`))
     setTimeout(() => { $('.single-item').addClass('scale') }, 100);
 }
 
 
-function orderItem(o) {
-    $('.customer-shipments .inside-wrapper').append(`
-    < div class="p-medium m-b-3 order bg-lightgray border-1-g" style = "cursor:pointer" >
-        <input type="hidden" value="${o.id}" name="orderId">
-            <div class="flex f-space-around ">
-                <div> ${o.date}</div>
-                <div> رقم الشحنه: ${o.shipmentNo}</div>
-                <div> حاله الشحنه: ${o.status.text}</div>
-            </div>
-            <div class="itemsBox bg-lightgray p-medium none"></div>
-    </div>
-`)
-}

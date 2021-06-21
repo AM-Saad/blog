@@ -37,13 +37,13 @@ async function fetchdata(token, url, method, body, contentType) {
                 res = await fetch(url, {
                     method: method,
                     headers: {
-                        'X-CSRF-Token': token
+                        'X-CSRF-Token': token,
                     }
                 })
             }
         }
         const json = await res.json()
-        if (res.status == 200 || res.json.status == 201) {
+        if (res.status == 200 || res.status == 201) {
             return { res, json }
         } else {
             showmessage(json.message, json.messageType, 'body')

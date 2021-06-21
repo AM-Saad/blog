@@ -69,9 +69,11 @@ exports.postLogin = async (req, res, next) => {
         req.session.user = user;
         req.session.isAdmin = true
         await req.session.save(err => {
-            console.log(req.session);
+            if (err) {
+                return res.redirect(`/admin/login?lang=${res.locals.lang || 'en'}`)
 
-            return res.redirect(`/admin/dashboard?lang=${res.locals.lang || 'en'}`)
+            }
+            return res.redirect(`/admin/articles?lang=${res.locals.lang || 'en'}`)
         });
     } catch (error) {
         console.log(error);
@@ -122,12 +124,12 @@ exports.createArticle = async (req, res, next) => {
     const title = req.body.title;
     const category = req.body.category;
     const sub = req.body.sub;
-    const tags = JSON.parse(req.body.tags);
     const lang = req.body.lang
     const active = req.body.active
+    // const tags = JSON.parse(req.body.tags);
     const site_description = req.body.site_description
     // const delta = JSON.parse(req.body.delta);
-
+    console.log(req.body.content);
     let image;
     if (req.file) {
         image = req.file.path.replace("\\", "/");
@@ -139,7 +141,7 @@ exports.createArticle = async (req, res, next) => {
             title: title,
             content: content,
             image: image,
-            tags: tags,
+            // tags: tags,
             category: { name: category, sub: sub },
             shares: [],
             comments: [],
@@ -230,7 +232,7 @@ exports.editArticle = async (req, res, next) => {
         article.site_description = site_description
         // article.delta = { ...delta }
         await article.save();
-        return await res.status(200).json({ message: 'Article Updated', article: article });
+        return await res.status(200).json({ message: 'Article Updated', messageType: 'success', article: article });
     } catch (error) {
         if (!error.statusCode) {
             error.statusCode = 500;
@@ -247,7 +249,7 @@ exports.deleteArticle = async (req, res, next) => {
         await article.remove()
         return res
             .status(200)
-            .json({ message: "article Delete", articleId: articleId });
+            .json({ message: "article Delete",  messageType: 'success', articleId: articleId });
     } catch (error) {
         if (!error.statusCode) {
             error.statusCode = 500;
@@ -300,7 +302,7 @@ exports.createCategory = async (req, res, next) => {
             order: order ? order : null,
             active: active ? active : true,
             subCategory: subCategories,
-            image: req.files.length > 0 ? req.files[0].path.replace("\\", "/") : '',
+            image: req.files ? req.file.path.replace("\\", "/") : '',
             attributes: [],
             tag: tag
         }

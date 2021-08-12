@@ -22,7 +22,6 @@ exports.getLogin = async (req, res, next) => {
     //   await newAdmin.save()
     //   console.log(newAdmin);
     // if (req.session.isLoggedIn && req.session.user.isAdmin) return res.redirect('/admin/dashboard')
-    console.log('heer')
     return res.render(`admin/auth/login`, {
         path: "/admin/login",
         pageTitle: "Admin",
@@ -39,8 +38,7 @@ exports.postLogin = async (req, res, next) => {
     const mobile = req.body.mobile;
     const password = req.body.password;
     try {
-        const user = await Admin.findOne({})
-        console.log(user);
+        const user = await Admin.findOne({ mobile: mobile })
         if (!user) {
             return res.render(`admin/auth/login`, {
                 path: "/admin/login",
@@ -129,7 +127,6 @@ exports.createArticle = async (req, res, next) => {
     // const tags = JSON.parse(req.body.tags);
     const site_description = req.body.site_description
     // const delta = JSON.parse(req.body.delta);
-    console.log(req.body.content);
     let image;
     if (req.file) {
         image = req.file.path.replace("\\", "/");
@@ -174,8 +171,6 @@ exports.createArticle = async (req, res, next) => {
             article: article
         });
     } catch (error) {
-        console.log(error);
-
 
         if (!error.statusCode) {
             error.statusCode = 500;
@@ -219,7 +214,6 @@ exports.editArticle = async (req, res, next) => {
         if (!article) { return res.status(404).json({ message: 'Somthing went wrong. Please try again.', messageType: 'warning' }) }
         if (req.file) {
             if (article.image) {
-                console.log('has');
                 const relative_path = process.cwd()
                 fs.unlinkSync(relative_path + '/' + article.image);
             }
@@ -377,4 +371,22 @@ exports.deleteCategory = async (req, res, next) => {
 
         return res.status(500).json({ message: `${res.locals.lang == 'en' ? 'Something went worng, please try again' : 'برجاء اعاده تشغيل الصفحه و المحاوله مره اخري'}`, messageType: 'danger' })
     }
+}
+
+
+
+exports.uploadImage = async (req, res, next) => {
+    console.log('here');
+    if (req.file) return res.status(200).json('/' + req.file.path.replace("\\", "/"))
+}
+
+
+exports.deleteImage = async (req, res, next) => {
+    const name = req.body.name
+    console.log(req.body);
+
+    fs.unlink(`.${name}`, function (error) {
+        if (error) return res.status(500).json({ message: 'Something went wrong, please try again.', messageType: 'danger' })
+    });
+
 }

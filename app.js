@@ -12,7 +12,7 @@ var cors = require('cors');
 
 const app = express();
 
-const MONGODBURI = `mongodb+srv://abdelrhman:ingodwetrust@onlineshop-zsiuv.mongodb.net/spot_blog`;
+const MONGODBURI = `mongodb+srv://abdelrhman:ingodwetrust@onlineshop-zsiuv.mongodb.net/ams_blog`;
 
 const store = new MongoDBStore({
   uri: MONGODBURI,

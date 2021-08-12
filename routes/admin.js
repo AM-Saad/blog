@@ -29,5 +29,7 @@ router.delete('/api/category/:id', isAdmin, adminControllers.deleteCategory);
 
 
 
+router.post('/media', isAdmin, adminControllers.uploadImage)
+router.put('/media', isAdmin, adminControllers.deleteImage)
 
 module.exports = router;

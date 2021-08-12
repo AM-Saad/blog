@@ -1,5 +1,13 @@
 .wrapper{
-    width: 100%;
+    /* width: 100%; */
+}
+.ql-container.ql-snow{
+    border: 0;
+}
+.ql-snow .ql-editor pre.ql-syntax{
+    padding: 12px;
+    font-size: 16px;
+    margin: var(--m-margin) 0;
 }
 header{
     width: 100%;
@@ -16,4 +24,14 @@ header img{
     display: block;
     margin: auto;
     margin-bottom: var(--m-margin);
+}
+.ql-container.ql-snow{
+    border: none !important;
+}
+[data-mode="light"] .ql-editor{
+    color: #111;
+}
+
+[data-mode="dark"] .ql-editor{
+    color: #f9f9f9;
 }

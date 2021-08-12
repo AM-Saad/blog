@@ -1,0 +1,29 @@
+
+.wrapper{
+    padding: var(--m-padding);
+}
+p{
+    line-height: 1.7;
+    font-size: 18px;
+    margin: var(--m-margin) 0;
+}
+
+[data-mode="dark"] p{
+    color: #eee;
+}
+[data-mode="light"] p{
+    color: #111;
+}
+
+section{
+    margin-bottom: var(--l-margin);
+}
+
+.resume{
+    direction: ltr !important;
+}
+.resume iframe{
+    height: 100vh;
+    margin-top:var(--m-margin)
+}
+

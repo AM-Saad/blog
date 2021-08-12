@@ -7,35 +7,42 @@
 </head>
 
 <body>
-    <%- include('./includes/nav.ejs') %>
+    <%- include('./includes/search.ejs') %>
 
         <div class="wrapper">
-            <%- include('./includes/topics.ejs') %>
-                <% if(articles.length> 0 ){ %>
-                    <section id="articles">
-                        <% for(article of articles){ %>
-                            <article
-                                style="background-image:url('/<%=article.image %>');">
-                                <a href="/article/<%=article.title%>">
-                                    <div class="article-body">
-                                        <h3>
-                                            <%=article.title%>
-                                        </h3>
-                                        <p>
-                                            <%= article.date %>
-                                        </p>
-                                    </div>
-                                </a>
-                            </article>
+            <%- include('./includes/nav.ejs') %>
+
+                <%- include('./includes/topics.ejs') %>
+                    <% if(articles.length> 0 ){ %>
+                        <section id="articles" class="grid g-three">
+                            <% for(article of articles){ %>
+                                <article class="lazy-background hidden" data-src="/<%=article.image %>"  data-id="<%=article._id%>">
+                                    <a href="/article/<%=article.title%>">
+                                        <div class="article-body">
+                                            <h3>
+                                                <%=article.title%>
+                                            </h3>
+                                            <p>
+                                                <%= article.date %>
+                                            </p>
+                                        </div>
+                                    </a>
+                                </article>
+                                <% } %>
+
+                        </section>
+                        <% } else { %>
+
+                            <div class="no-result">
+
+                                <img src="/images/noresult.svg" alt="">
+                                <h2>Nothing Here Yet..</h2>
+                                <h3>But you may be intersted in</h3>
+                            </div>
                             <% } %>
 
-                    </section>
-                    <% } else { %>
-                        <h3>Nothing Here Yet..</h3>
-                        <h4>But you may be intersted in</h4>
-                        <% } %>
-
         </div>
+        <%- include('./includes/scripts.ejs') %>
 
 </body>
 

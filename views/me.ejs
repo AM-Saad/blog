@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./includes/head.ejs') %>
+        <link rel="stylesheet" href="/css/about.css">
+</head>
+
+<body onload="getBookmark()">
+
+    <div class="wrapper">
+        <%- include('./includes/nav.ejs') %>
+
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <section>
+                <h1>My Story</h1>
+                <p>
+                    After growing up and trying many different jobs such as Reception, Carpentry, Salesman,
+                    etc..,<br>
+                    <br>
+                    I got a B.S degree in manegment information system and I've opened a retail shop and that leads
+                    me to get a graphic design diploma in order to make my
+                    own brand identity, and a diploma in Digital Marketing to reach more people. Besides my retail,
+                    I've
+                    landed a couple of
+                    projects as a digital marketeer and graphics designer and I did well,
+                    <i> they said.</i>
+                    <br>
+                    <br>
+                    After that, it's time to make an e-commerce store for my shop and that's
+                    was my
+                    first time to learn
+                    about programming and fall in love with it, <strong> I knew that's what I want to be.</strong>
+                </p>
+                <p>
+                    Fast. I started my long journey in learning how to be a good SW Engineer.<br>
+                    Contrary to what others do i was'nt looking for a quick job or fast money,
+                    My goal was "be good to stand out from the crowd" and let the everything else
+                    searching for you.<br>
+                    the journey is just at the beginning and it will never end.
+                    <br>
+                    <br>
+                    Here i want to share my thought, experinces and information about everything i knew could help
+                    you get a work done.
+                    <br>
+                    Below is my resume and portfolio, and I hope you enjoy exploring my site. If you’d like to get
+                    in
+                    touch or if you have questions about my work, don’t hesitate to contact me.
+                </p>
+            </section>
+            <section class="resume">
+                <h1>My Resume</h1>
+                <iframe
+                    src="/images/output.html"
+                    style="width:100%; border: none;"></iframe>
+            </section>
+
+    </div>
+    <%- include('./includes/scripts.ejs') %>
+        <script>
+            const bookmardId = document.getElementById('bookmardId').value
+            setBookmarkId(bookmardId)
+        </script>
+
+</body>
+
+</html>

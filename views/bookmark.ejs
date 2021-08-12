@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./includes/head.ejs') %>
+   
+</head>
+
+<body onload="getBookmark()">
+
+    <div class="wrapper">
+        <%- include('./includes/nav.ejs') %>
+        <%- include('./includes/search.ejs') %>
+
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <input type="hidden" id="bookmardId" value="<%= bookmardId %>">
+
+            <%- include('./includes/topics.ejs') %>
+                <h1>Your Bookmark</h1>
+                <% if(articles.length> 0 ){ %>
+
+                    <section id="articles" class="grid g-three">
+                        <% for(article of articles){ %>
+                            <article style="background-image:url('/<%=article.image %>');" class="bookmark-item"
+                                data-id="<%=article.id%>">
+                                <input type="hidden" name="articleId" value="<%= article.id %>">
+
+                                <span class="add-bookmark">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 16 16" width="64px"
+                                        height="64px">
+                                        <path fill="none" stroke="#fff" stroke-miterlimit="10"
+                                            d="M11.5,2.5h-7c-0.552,0-1,0.448-1,1v10L8,10.2l4.5,3.3v-10C12.5,2.948,12.052,2.5,11.5,2.5z" />
+                                    </svg>
+                                </span>
+                                <a href="/article/<%=article.name%>">
+                                    <div class="article-body">
+                                        <div class="blurrer"></div>
+
+                                        <h3>
+                                            <%=article.name%>
+                                        </h3>
+
+                                    </div>
+                                </a>
+                            </article>
+                            <%}%>
+                    </section>
+                    <% } else { %>
+                        <div class="no-result">
+
+                            <img src="/images/empty_bookmark.svg" alt="">
+                            <h2>Oops!</h2>
+                            <h3>You've not add a bookmark until now!! <br> Goo ahead and add you will need it later</h3>
+                        </div>
+                        <% } %>
+
+    </div>
+    <%- include('./includes/scripts.ejs') %>
+        <script>
+            const bookmardId = document.getElementById('bookmardId').value
+            setBookmarkId(bookmardId)
+        </script>
+
+</body>
+
+</html>

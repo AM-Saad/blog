@@ -67,32 +67,85 @@
             })
         },
         editor: function () {
+            // hljs.highlightAll();
+            hljs.configure({ languages: ['javascript', 'ruby', 'python'] });
             var toolbarOptions = [
                 ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
                 ['blockquote', 'code-block'],
-
                 [{ 'header': 1 }, { 'header': 2 }],               // custom button values
                 [{ 'list': 'ordered' }, { 'list': 'bullet' }],
                 [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
                 [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
                 [{ 'direction': 'rtl' }],                         // text direction
-                [{ 'image': 'video' }],                         // text direction
-
+                [{ 'image': 'video' }],                           // text direction
                 [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
                 [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
                 [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
                 [{ 'font': [] }],
                 [{ 'align': [] }],
-
             ];
+
+            console.log(hljs);
+
             var quill = new Quill('.editor', {
                 modules: {
                     toolbar: toolbarOptions
                 },
+                syntax: true,
                 theme: 'snow',
+                imageHandler: config.imageHandler,
             });
+            // $('pre code').each(function(i, block) {
+            //     hljs.highlightBlock(block);
+            //   });
+
+            function selectLocalImage() {
+                const input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.click();
+
+                // Listen upload local image and save to server
+                input.onchange = () => {
+                    const file = input.files[0];
+                    // file type is only image.
+                    let valid = config.validateImage(file)
+                    console.log(valid);
+                    if (valid) {
+                        // saveToServer(file);
+
+                    }
+                    // if (/^image\//.test(file.type)) {
+                    // } else {
+                    //     console.warn('You could only upload images.');
+                    // }
+                };
+            }
+
+            /**
+             * Step2. save to server
+             *
+             */
+            async function saveToServer(file) {
+                const fd = new FormData();
+                fd.append('image', file);
+
+                let data = await fetchdata(config.jwt, 'http://localhost:3000/admin/media', 'post', fd, false)
+                if (data) insertToEditor(data.json);
+
+            }
+
+            function insertToEditor(url) {
+                // push image url to rich editor.
+                const range = quill.getSelection();
+                quill.insertEmbed(range.index, 'image', `http://localhost:3000${url}`);
+            }
+
+            // quill quill add image handler
+            quill.getModule('toolbar').addHandler('image', () => selectLocalImage());
+
+
         },
+
         getItems: async function (e) {
             $('.content .loading').removeClass('none')
             const data = await fetchdata(this.jwt, '/admin/api/articles', 'get', {}, true)
@@ -215,18 +268,16 @@
         getArticleImg: function (e) {
             var files = e.target.files[0]; //FileList object
             const fileValid = this.validateImage(files)
-            console.log(fileValid);
             if (fileValid) {
                 this.itemImg = files
             }
 
         },
-        validateImage: function (files) {
+        validateImage: function (file) {
             var validImageTypes = ["image/jpg", "image/jpeg", "image/png"];
-            var file = files;
             var fileType = file["type"];
             if ($.inArray(fileType, validImageTypes) < 0) {
-                showmessage('الامتدادت المقبوله هي jpeg, png or jpg', 'warning', 'body')
+                showmessage('Image should be jpeg, png or jpg', 'warning', 'body')
                 return false
             }
             return true

@@ -46,6 +46,9 @@ a:visited {
   text-decoration: none
 }
 
+input:focus{
+  outline: none;
+}
 ul {
   list-style: none;
 }
@@ -72,6 +75,52 @@ ul {
 
 .fas:hover {
   opacity: .8;
+}
+
+
+.form-group {
+  margin: var(--m-margin);
+  position: relative;
+  align-items: center;
+  display: grid;
+  min-width: 90px;
+  border-radius: var(--s-radius);
+  border: 1px solid #ccc;
+  min-height: 35px !important;
+  background: #eee;
+  padding: 9px 9px;
+  font-weight: bold;
+}
+
+.form-group select,
+.form-group input{
+  height: 45px;
+  border: none;
+  border-radius: 5px;
+  padding: var(--s-padding);
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+}
+
+.form-group input[type="checkbox"]{
+  width: 15px;
+  height: 15px;
+  margin: var(--s-margin);
+}
+
+.form-control {
+  width: 100%;
+  height: calc(1.2em + 1.2rem + 2px);
+  padding: .3rem .7rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #fff;
+  background-clip: padding-box;
+  border-radius: var(--s-radius);
+  /* box-shadow: var(--shadow); */
 }
 
 .wrapper {

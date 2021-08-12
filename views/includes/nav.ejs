@@ -1,6 +1,41 @@
+<div class="upper-menu flex f-space-between">
+        <div></div>
+        <div>
+
+                <button class="change-mode" data-mood="dark"><img src="/images/moon2.png"></button>
+                <button class="change-mode " data-mood="light"><img src="/images/sun.png"></button>
+        </div>
+</div>
 <nav id="main-nav">
-    <ul class="flex f-space-between">
-        <li><i class="fas fa-braille"></i></li>
-        <li><i class="fas fa-search"></i></li>
-    </ul>
+        <div class="blurrer"></div>
+        <ul class="flex f-space-between">
+                <li class="<%= path === '/' ? 'active' : '' %>"><a href="/"><svg xmlns="http://www.w3.org/2000/svg"
+                                        fill="#000000" viewBox="0 0 16 16" width="64px" height="64px">
+                                        <path fill="none" stroke="#000000" stroke-miterlimit="10"
+                                                d="M1 8.5L8 2 15 8.5" />
+                                        <path fill="none" stroke="#000000" stroke-miterlimit="10"
+                                                d="M2.5 7L2.5 13.5 6.5 13.5 6.5 8.5 9.5 8.5 9.5 13.5 13.5 13.5 13.5 7" />
+                                </svg></a></li>
+
+
+                <li class="<%= path === '/bookmark' ? 'active' : '' %>"><a href="" class="go-to-bookmark"> <svg
+                                        xmlns="http://www.w3.org/2000/svg" fill="#000000" viewBox="0 0 16 16"
+                                        width="64px" height="64px">
+                                        <path fill="none" stroke="#000000" stroke-miterlimit="10"
+                                                d="M11.5,2.5h-7c-0.552,0-1,0.448-1,1v10L8,10.2l4.5,3.3v-10C12.5,2.948,12.052,2.5,11.5,2.5z" />
+                                </svg></a></li>
+
+
+                <li class="opensearch"><svg xmlns="http://www.w3.org/2000/svg" fill="#000000" viewBox="0 0 16 16"
+                                width="64px" height="64px">
+                                <path fill="none" stroke="#000000" stroke-miterlimit="10"
+                                        d="M2.375 13.625L7.562 8.438M10.5 1.5A4 4 0 1 0 10.5 9.5 4 4 0 1 0 10.5 1.5z" />
+                        </svg></li>
+
+                <li class="<%= path === '/me' ? 'active' : '' %>"><a href="/me"><svg xmlns="http://www.w3.org/2000/svg"
+                                        fill="#000000" viewBox="0 0 16 16" width="64px" height="64px">
+                                        <path fill="none" stroke="#000000" stroke-miterlimit="10"
+                                                d="M8 2.5A2.5 2.5 0 1 0 8 7.5 2.5 2.5 0 1 0 8 2.5zM3.5 13c0-2.485 2.015-4.5 4.5-4.5s4.5 2.015 4.5 4.5" />
+                                </svg></a> </li>
+        </ul>
 </nav>

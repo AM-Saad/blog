@@ -18,6 +18,9 @@ const adminSchema = new Schema(
         },
 
         isAdmin: { type: Boolean, default: true },
+        bio:String,
+        image:String,
+        resume:String,
 
     },
     { timestamps: true }

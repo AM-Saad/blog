@@ -68,7 +68,6 @@
         },
         editor: function () {
             // hljs.highlightAll();
-            hljs.configure({ languages: ['javascript', 'ruby', 'python'] });
             var toolbarOptions = [
                 ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
                 ['blockquote', 'code-block'],
@@ -84,14 +83,16 @@
                 [{ 'font': [] }],
                 [{ 'align': [] }],
             ];
+            hljs.configure({ languages: ['javascript'] });
 
             console.log(hljs);
 
             var quill = new Quill('.editor', {
                 modules: {
+                    syntax: true,
+
                     toolbar: toolbarOptions
                 },
-                syntax: true,
                 theme: 'snow',
                 imageHandler: config.imageHandler,
             });
@@ -129,7 +130,7 @@
                 const fd = new FormData();
                 fd.append('image', file);
 
-                let data = await fetchdata(config.jwt, 'http://localhost:3000/admin/media', 'post', fd, false)
+                let data = await fetchdata(config.jwt, '/admin/media', 'post', fd, false)
                 if (data) insertToEditor(data.json);
 
             }
@@ -137,7 +138,7 @@
             function insertToEditor(url) {
                 // push image url to rich editor.
                 const range = quill.getSelection();
-                quill.insertEmbed(range.index, 'image', `http://localhost:3000${url}`);
+                quill.insertEmbed(range.index, 'image', `${url}`);
             }
 
             // quill quill add image handler
@@ -222,22 +223,27 @@
                 const exist = this.tags.find(s => s == tag)
                 if (!exist) {
                     this.tags.push(tag)
-                    $('.tags').append(`<button data-sub="${tag}">
-                <i class="fas fa-times delete-tag"></i>
-                ${tag}
-                </button>`)
+                    this.displayTags(this.tags)
                 }
             }
             $('#tag').val('')
+        },
+        displayTags:function(tags){
+            $('.tags').empty()
+            tags.forEach(tag=>{
+
+                $('.tags').append(`<button data-sub="${tag}">
+                <i class="fas fa-times delete-tag"></i>
+                ${tag}
+                </button>`)
+            })
         },
         deleteTag: function (e) {
 
             const sub = $(e.target).parent('button').data('sub').toLowerCase()
 
             this.tags = this.tags.filter(s => s != sub)
-            $(e.target).parent('button').remove()
-            console.log(this.tags);
-
+            this.displayTags(this.tags)
         },
         createItemForm: function () {
             let content = $('.ql-editor').html()
@@ -336,7 +342,7 @@
             this.opened = item._id
             this.itemImg = item.image
             this.editing = true
-
+            this.tags = item.tags
             $('#title').val(item.title);
             $('.ql-editor').html(item.content)
 
@@ -344,8 +350,7 @@
             $('#site_description').val(item.site_description)
             $('#location').val(item.location)
             $('#category').val(item.category.name).trigger('change')
-
-            this.tags.forEach(sub => $('.tags').append(`<button data-sub="${sub}"> <i class="fas fa-times delete-sub"></i>${sub} </button>`))
+            this.displayTags(this.tags)
 
             $('.new-item-box').addClass('slide')
 

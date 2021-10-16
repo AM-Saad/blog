@@ -1,0 +1,57 @@
+{
+    "name": "Abdelrahman Saad",
+    "short_name": "AMS Blog",
+    "start_url": "/",
+    "scope": ".",
+    "display": "standalone",
+    "background_color": "#fff",
+    "theme_color": "#fff",
+    "orientation": "portrait-primary",
+    "shortcuts":[
+        {
+            "name":"Javascript Articles",
+            "short_name":"Javascript",
+            "description":"Show javascript articles",
+            "url":"/articles/javascript"
+        },
+        {
+            "name":"Your Bookmark",
+            "short_name":"Bookmark",
+            "description":"Show artiles you bookmarked",
+            "url":"/articles/bookmark"
+        }
+    ],
+    "icons": [
+        {
+            "src": "/images/icons/192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/images/icons/512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/icons/384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/icons/144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/icons/96.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/icons/48.png",
+            "sizes": "48x48",
+            "type": "image/png"
+        }
+    ]
+}

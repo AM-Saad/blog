@@ -28,7 +28,7 @@
             this.comparisonBetweenTowMonthes(thisMonthSales, lastMonthSales)
         },
         cashDom: function () {
-            $('body').on('click', '.order', this.storeShipment.bind(this))
+            $('body').on('click', '.article', this.storeShipment.bind(this))
 
         },
         bindEvents: function () {
@@ -48,15 +48,14 @@
         },
         storeShipment: function (e) {
             e.preventDefault()
-            console.log(e);
-            const siD = $(e.target).data('si')
+            const siD = $(e.currentTarget).data('si')
             localStorage.setItem('si', siD)
-            return window.location.href = e.currentTarget.href
+            // return window.location.href = e.currentTarget.href
         },
 
         searchSalesByDate: async (from, to) => {
 
-            const data = await fetchdata(mainpanel.jwt, `/admin/api/orders/?from=${from}&&to=${to}&&type=date`, 'get', {}, true)
+            const data = await fetchdata(mainpanel.jwt, `/admin/api/articles/?from=${from}&&to=${to}&&type=date`, 'get', {}, true)
             console.log(data);
             if (data) {
                 mainpanel.fetchedSales = data.json.orders

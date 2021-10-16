@@ -1,9 +1,11 @@
 
-window.pop_old = document.location.pathname;
-window.pop_new = '';
-
 
 window.addEventListener("load", function () {
+    window.pop_old = document.location.pathname;
+    window.pop_new = '';
+    const fileVersion = 1
+
+
 
     window.onpopstate = function (event) {
         window.pop_new = document.location.pathname;
@@ -64,6 +66,7 @@ window.addEventListener("load", function () {
     }
 
     async function startTransition(link, newPath, currentPath, e) {
+
         startAnimation(document)
 
         const text = await getNextPage(newPath)
@@ -73,7 +76,9 @@ window.addEventListener("load", function () {
             if (done) {
                 const res = checkMainElements(nextPageDocument)
                 if (res) {
+
                     replacePages(document, nextPageDocument, newPath, currentPath)
+
                     return endAnimation(document, nextPageDocument)
                 } else {
                     // window.pop_new = newPath;
@@ -81,9 +86,11 @@ window.addEventListener("load", function () {
                     return window.location.pathname = newPath
                 }
             }
+
         } else {
             window.location = newPath
             // window.pop_new = newPath;
+
 
             return window.location.pathname = newPath
         }
@@ -105,14 +112,14 @@ window.addEventListener("load", function () {
     }
 
     function replaceHead(currentPage, nextPage) {
-        var oldscripts = currentPage.querySelectorAll("link[data-ams-replace='true']")
-        for (let i = 0; i < oldscripts.length; i++) {
-            oldscripts[i].remove()
+        var oldStyles = currentPage.querySelectorAll("link[data-ams-reload='true']")
+        for (let i = 0; i < oldStyles.length; i++) {
+            oldStyles[i].remove()
         }
-        var newscripts = nextPage.querySelectorAll("link[data-ams-replace='true']")
-        for (let i = 0; i < newscripts.length; i++) {
-            newscripts[i].remove()
-            currentPage.querySelector('head').appendChild(newscripts[i])
+        var newStyles = nextPage.querySelectorAll("link[data-ams-reload='true']")
+        for (let i = 0; i < newStyles.length; i++) {
+            newStyles[i].remove()
+            currentPage.querySelector('head').appendChild(newStyles[i])
         }
         let newTitle = nextPage.querySelector('title').innerText
         currentPage.querySelector('title').innerText = newTitle
@@ -126,27 +133,38 @@ window.addEventListener("load", function () {
         window.history.pushState("", "", newPath);
 
         currentPage.querySelector('#main').innerHTML = newContent.innerHTML
-        reload_js();
-
+        const scripts = remove_js();
+        // setTimeout(() => {
+        reload_js(nextPage, scripts)
+        // }, 100);
 
 
     }
 
-    function reload_js() {
-        var body = document.querySelector('body')
+    function remove_js() {
 
         var scripts = document.querySelectorAll("script[data-ams-reload='true']")
+        let urls = []
         for (let i = 0; i < scripts.length; i++) {
-            const src = scripts[i].getAttribute('src')
-            var newscript = document.createElement('script');
-            newscript.src = src;
-            newscript.setAttribute('data-ams-reload', 'true')
-            body.appendChild(newscript);
             scripts[i].remove()
-
+            let src = scripts[i].getAttribute('src')
+            urls.push(src)
         }
+        return urls
     }
 
+    function reload_js(nextPage, oldScripts) {
+        var body = document.querySelector('body')
+        const scripts = nextPage.querySelectorAll("script[data-ams-reload='true']")
+        for (let i = 0; i < scripts.length; i++) {
+            var newscript = document.createElement('script');
+            newscript.src = scripts[i].getAttribute('src');
+            newscript.setAttribute('data-ams-reload', 'true')
+            body.appendChild(newscript);
+
+        }
+
+    }
 
     function startAnimation(current) {
         const main = current.querySelector('#main')
@@ -224,6 +242,16 @@ window.addEventListener("load", function () {
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     }
 
+
+    if (fileVersion == 1) {
+        // var ks = ["postMessage", "blur", "focus", "close", "frames", "self", "window", "parent", "opener", "top", "length", "closed", "location", "document", "origin", "name", "history", "locationbar", "menubar", "personalbar", "scrollbars", "statusbar", "toolbar", "status", "frameElement", "navigator", "customElements", "external", "screen", "innerWidth", "innerHeight", "scrollX", "pageXOffset", "scrollY", "pageYOffset", "screenX", "screenY", "outerWidth", "outerHeight", "devicePixelRatio", "clientInformation", "screenLeft", "screenTop", "defaultStatus", "defaultstatus", "styleMedia", "onanimationend", "onanimationiteration", "onanimationstart", "onsearch", "ontransitionend", "onwebkitanimationend", "onwebkitanimationiteration", "onwebkitanimationstart", "onwebkittransitionend", "isSecureContext", "onabort", "onblur", "oncancel", "oncanplay", "oncanplaythrough", "onchange", "onclick", "onclose", "oncontextmenu", "oncuechange", "ondblclick", "ondrag", "ondragend", "ondragenter", "ondragleave", "ondragover", "ondragstart", "ondrop", "ondurationchange", "onemptied", "onended", "onerror", "onfocus", "oninput", "oninvalid", "onkeydown", "onkeypress", "onkeyup", "onload", "onloadeddata", "onloadedmetadata", "onloadstart", "onmousedown", "onmouseenter", "onmouseleave", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onmousewheel", "onpause", "onplay", "onplaying", "onprogress", "onratechange", "onreset", "onresize", "onscroll", "onseeked", "onseeking", "onselect", "onstalled", "onsubmit", "onsuspend", "ontimeupdate", "ontoggle", "onvolumechange", "onwaiting", "onwheel", "onauxclick", "ongotpointercapture", "onlostpointercapture", "onpointerdown", "onpointermove", "onpointerup", "onpointercancel", "onpointerover", "onpointerout", "onpointerenter", "onpointerleave", "onafterprint", "onbeforeprint", "onbeforeunload", "onhashchange", "onlanguagechange", "onmessage", "onmessageerror", "onoffline", "ononline", "onpagehide", "onpageshow", "onpopstate", "onrejectionhandled", "onstorage", "onunhandledrejection", "onunload", "performance", "stop", "open", "alert", "confirm", "prompt", "print", "requestAnimationFrame", "cancelAnimationFrame", "requestIdleCallback", "cancelIdleCallback", "captureEvents", "releaseEvents", "getComputedStyle", "matchMedia", "moveTo", "moveBy", "resizeTo", "resizeBy", "getSelection", "find", "webkitRequestAnimationFrame", "webkitCancelAnimationFrame", "fetch", "btoa", "atob", "setTimeout", "clearTimeout", "setInterval", "clearInterval", "createImageBitmap", "scroll", "scrollTo", "scrollBy", "onappinstalled", "onbeforeinstallprompt", "crypto", "ondevicemotion", "ondeviceorientation", "ondeviceorientationabsolute", "indexedDB", "webkitStorageInfo", "sessionStorage", "localStorage", "chrome", "visualViewport", "speechSynthesis", "webkitRequestFileSystem", "webkitResolveLocalFileSystemURL", "addEventListener", "removeEventListener", "openDatabase", "dispatchEvent"]
+        console.log(this.formEl)
+        console.log(window.formEl)
+        var variables = ""
+        for (var name in window)
+            variables += name + "\n";
+    }
+    console.log(variables);
 
 });
 

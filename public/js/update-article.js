@@ -1,7 +1,6 @@
-let arabic = /[\u0600-\u06FF]/;
-let content = document.getElementById('content').innerText
-let res = arabic.test(content)
-document.getElementById('content').innerHTML = content
-if (res) {
-    document.querySelector('.wrapper').style.direction = 'rtl'
-}
+// const arabic = /[\u0600-\u06FF]/;
+// const res = arabic.test(content)
+document.getElementById('content').innerHTML = document.getElementById('content').innerText
+// if (res) {
+//     document.querySelector('.wrapper').style.direction = 'rtl'
+// }

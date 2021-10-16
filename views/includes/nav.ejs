@@ -2,14 +2,15 @@
         <div></div>
         <div>
 
-                <button class="change-mode" data-mood="dark"><img src="/images/moon2.png"></button>
-                <button class="change-mode " data-mood="light"><img src="/images/sun.png"></button>
+                <button class="change-mode" data-mood="dark"><img src="/images/moon2.png" alt="dark mode"></button>
+                <button class="change-mode " data-mood="light"><img src="/images/sun.png" alt="light mode"></button>
+                <a class="install-btn none" id="install-btn">install</a>
         </div>
 </div>
 <nav id="main-nav">
         <div class="blurrer"></div>
         <ul class="flex f-space-between">
-                <li class="<%= path === '/' ? 'active' : '' %>"><a href="/"><svg xmlns="http://www.w3.org/2000/svg"
+                <li><a class="<%= path === '/' ? 'active' : '' %>" href="/"><svg xmlns="http://www.w3.org/2000/svg"
                                         fill="#000000" viewBox="0 0 16 16" width="64px" height="64px">
                                         <path fill="none" stroke="#000000" stroke-miterlimit="10"
                                                 d="M1 8.5L8 2 15 8.5" />
@@ -18,7 +19,7 @@
                                 </svg></a></li>
 
 
-                <li class="<%= path === '/bookmark' ? 'active' : '' %>"><a href="" class="go-to-bookmark"> <svg
+                <li><a href="/bookmarks" class="<%= path === '/bookmark' ? 'active' : '' %> go-to-bookmark"> <svg
                                         xmlns="http://www.w3.org/2000/svg" fill="#000000" viewBox="0 0 16 16"
                                         width="64px" height="64px">
                                         <path fill="none" stroke="#000000" stroke-miterlimit="10"
@@ -26,13 +27,14 @@
                                 </svg></a></li>
 
 
-                <li class="opensearch"><svg xmlns="http://www.w3.org/2000/svg" fill="#000000" viewBox="0 0 16 16"
-                                width="64px" height="64px">
-                                <path fill="none" stroke="#000000" stroke-miterlimit="10"
-                                        d="M2.375 13.625L7.562 8.438M10.5 1.5A4 4 0 1 0 10.5 9.5 4 4 0 1 0 10.5 1.5z" />
-                        </svg></li>
+                <li> <a class="opensearch">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" viewBox="0 0 16 16" width="64px"
+                                        height="64px">
+                                        <path fill="none" stroke="#000000" stroke-miterlimit="10"
+                                                d="M2.375 13.625L7.562 8.438M10.5 1.5A4 4 0 1 0 10.5 9.5 4 4 0 1 0 10.5 1.5z" />
+                                </svg></a></li>
 
-                <li class="<%= path === '/me' ? 'active' : '' %>"><a href="/me"><svg xmlns="http://www.w3.org/2000/svg"
+                <li><a class="<%= path === '/me' ? 'active' : '' %>" href="/me"><svg xmlns="http://www.w3.org/2000/svg"
                                         fill="#000000" viewBox="0 0 16 16" width="64px" height="64px">
                                         <path fill="none" stroke="#000000" stroke-miterlimit="10"
                                                 d="M8 2.5A2.5 2.5 0 1 0 8 7.5 2.5 2.5 0 1 0 8 2.5zM3.5 13c0-2.485 2.015-4.5 4.5-4.5s4.5 2.015 4.5 4.5" />

@@ -8,7 +8,7 @@
                     <img style="margin-bottom: -10px; height:30px" src="https://flagpedia.net/data/flags/w580/eg.png" alt="">
                 </a>
                 <a href="/admin/settings"> <i class="fas fa-cogs menu_icons_item"></i></a>
-                <a href="/logout"> <i class="fas fa-sign-out-alt menu_icons_item"></i></a>
+                <a href="/admin/logout"> <i class="fas fa-sign-out-alt menu_icons_item"></i></a>
                 <!-- <i class="fas fa-bell menu_icons_item"></i> -->
             </div>
         </ul>
@@ -29,7 +29,7 @@
                 class="dashboard-menu_item <%= path === '/admin/category' ? 'active' : '' %>"><b>Categories</b></a>
             <a href="/admin/settings?lang=en"
                 class="dashboard-menu_item <%= path === '/admin/settings' ? 'active' : '' %>"><b>Settings</b> </a>
-            <a class="dashboard-menu_item" href="/logout"><b> Logout</b> <img src="/admin/images/exit.png" alt=""></a>
+            <a class="dashboard-menu_item" href="/admin/logout"><b> Logout</b> <img src="/admin/images/exit.png" alt=""></a>
             <div id="dashboard-menu_bottom">
                 <a href="/admin/dashboard">
                     <%=user.name%>

@@ -1,6 +1,4 @@
-.wrapper{
-    /* width: 100%; */
-}
+
 .ql-container.ql-snow{
     border: 0;
 }
@@ -24,6 +22,7 @@ header img{
     display: block;
     margin: auto;
     margin-bottom: var(--m-margin);
+    border-radius: var(--m-radius);
 }
 .ql-container.ql-snow{
     border: none !important;

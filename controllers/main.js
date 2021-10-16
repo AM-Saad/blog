@@ -4,7 +4,6 @@ const Category = require("../models/Category");
 const Bookmark = require("../models/Bookmark");
 const { updateBookmark, createBookmark, } = require("../util/bookmark");
 const fs = require('fs')
-
 exports.home = async (req, res, next) => {
     try {
         const articles = await Article.find({ active: true });
@@ -18,10 +17,12 @@ exports.home = async (req, res, next) => {
             throw error;
         }
         return res.render("home", {
-            title: 'Home | Abdelrahman',
+            title: 'Abdelrahman Saad | Home',
             articles: articles,
             topics: categories,
-            path: '/'
+            path: '/',
+            pageKeywords: 'Abdelrahman, Abdelrahman saad, Web developer, javascript, web development, node.js, vue.js, js',
+            pageDescription: "Hello, I'm Abdelrahman Saad, a web developer passionate about tech in general and javascript, I have a strong background in marketing and graphic design. "
         });
 
     } catch (error) {
@@ -33,9 +34,12 @@ exports.me = async (req, res, next) => {
     try {
         const categories = await Category.find({});
         return res.render("me", {
-            title: 'Me',
+            title: 'Abdelrahman Saad | Home',
             topics: categories,
-            path: '/me'
+            path: '/me',
+            pageKeywords: 'Web developer, javascript, web development, node.js, vue.js, js, abdelrahman, abdelrahman saad',
+            pageDescription: "Hello, I'm Abdelrahman Saad, a web developer passionate about tech in general and javascript, I have a strong background in marketing and graphic design. "
+
         });
 
     } catch (error) {
@@ -44,10 +48,14 @@ exports.me = async (req, res, next) => {
 }
 
 exports.topics = async (req, res, next) => {
+    const itemPerPage = 2;
+    const pageNum = +req.query.page || 1;
     try {
-        const articles = await Article.find({ active: true, 'category.name': req.params.topic });
+        let query = req.params.topic === 'all' ? { active: true } : { active: true, 'category.name': req.params.topic }
+        const articles = await Article.find(query).skip((pageNum - 1) * itemPerPage)
+        .limit(itemPerPage)
         const categories = await Category.find({});
-
+       const totalItems = await Article.find(query).countDocuments()
         if (!articles) {
             const error = new Error("Could not find articles.");
             error.statusCode = 404;
@@ -57,7 +65,15 @@ exports.topics = async (req, res, next) => {
             title: `${req.params.topic} | Abdelrahman`,
             articles: articles,
             topics: categories,
-            path: req.params.topic
+            path: req.params.topic,
+            pageKeywords: `${req.params.topic}, javascript, github, git, node.js, nodejs, `,
+            pageDescription: `Know more about ${req.params.topic} and beyond`,
+            currentPage: pageNum,
+            hasNextPage: itemPerPage * pageNum < totalItems,
+            hasPrevPage: pageNum > 1,
+            nextPage: pageNum + 1,
+            prevPage: pageNum - 1,
+            lastPage: Math.ceil(totalItems / itemPerPage),
         });
 
     } catch (error) {
@@ -79,7 +95,9 @@ exports.article = async (req, res, next) => {
             title: `${article.title} | Abdelrahman`,
             article: article,
             topics: categories,
-            path: article.title
+            path: article.title,
+            pageKeywords: article.tags.join(", "),
+            pageDescription: article.description
         });
 
     } catch (error) {
@@ -90,9 +108,34 @@ exports.article = async (req, res, next) => {
 
 
 
+exports.bookmarkPage = async (req, res, next) => {
+
+    try {
+
+        const categories = await Category.find({});
+        return res.render("bookmark", {
+            title: 'Bookmark | Abdelrahman',
+            topics: categories,
+            path: '/bookmark',
+            pageKeywords: `javascript, github, git, node.js, nodejs, `,
+            pageDescription: "Hello I'm Abelrahman, i'm a web developer passionate about tech but also have a strong background in marketing and graphic design. Here we are going to discover all the things related to the tech industry as much as i can to simplify what i have learned until now in order to make your journey more fun"
+
+        });
+    } catch (err) {
+
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+
+    }
+};
+
+
+
+
 
 exports.bookmarks = async (req, res, next) => {
-    let bookmardId = req.query.bookmark
+    let bookmardId = req.params.id
 
     try {
         if (!bookmardId || bookmardId == 'null' || bookmardId == 'undefined') {
@@ -113,42 +156,12 @@ exports.bookmarks = async (req, res, next) => {
     }
 };
 
-exports.bookmarkPage = async (req, res, next) => {
-    let bookmardId = req.query.bookmark
-
-    try {
-        if (!bookmardId || bookmardId == 'null' || bookmardId == 'undefined') {
-            const newBookmark = createBookmark(Bookmark)
-            await newBookmark.save()
-            bookmardId = newBookmark.sessionId
-        }
-        const bookmark = await Bookmark.findOne({ sessionId: bookmardId })
-        if (!bookmark) return res.redirect('/')
-
-        const categories = await Category.find({});
-        return res.render("bookmark", {
-            title: 'Bookmark | Abdelrahman',
-            articles: bookmark.items,
-            topics: categories,
-            bookmardId: bookmardId,
-            path: '/bookmark'
-        });
-    } catch (err) {
-
-        const error = new Error(err);
-        error.httpStatusCode = 500;
-        return next(error);
-
-    }
-};
-
-
 exports.updateBookmark = async (req, res, next) => {
-    const prodId = req.params.id;
+    const itemId = req.params.id;
     let bookmardId = req.query.bookmark
-    console.log(bookmardId);
+
     try {
-        const article = await Article.findById(prodId)
+        const article = await Article.findById(itemId)
 
         if (!bookmardId || bookmardId == 'null' || bookmardId == 'undefined') {
             const newBookmark = createBookmark(Bookmark)
@@ -160,7 +173,6 @@ exports.updateBookmark = async (req, res, next) => {
         if (!bookmark) {
             return res.status(404).json({ message: 'Something went wrong', messageType: 'alert' });
         }
-        console.log(bookmark);
         const { items, added } = updateBookmark(bookmark.items, article, req.body, res)
         bookmark.items = items;
 

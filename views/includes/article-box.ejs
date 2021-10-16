@@ -1,0 +1,23 @@
+<article class="lazy-background hidden" data-src="/<%=article.image %>"  data-id="<%=article._id%>">
+    <input type="hidden" name="articleId" value="<%= article._id %>">
+
+    <span class="add-bookmark">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="#000" viewBox="0 0 16 16" width="64px"
+            height="64px">
+            <path fill="none" stroke="#000" stroke-miterlimit="10"
+                d="M11.5,2.5h-7c-0.552,0-1,0.448-1,1v10L8,10.2l4.5,3.3v-10C12.5,2.948,12.052,2.5,11.5,2.5z" />
+        </svg>
+    </span>
+    <a href="/article/<%=article.title%>">
+        <div class="article-body">
+            <div class="blurrer"></div>
+
+            <h4>
+                <%=article.title%>
+            </h4>
+            <p>
+                <%= article.date %>
+            </p>
+        </div>
+    </a>
+</article>

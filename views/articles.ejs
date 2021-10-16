@@ -16,7 +16,9 @@
                     <% if(articles.length> 0 ){ %>
                         <section id="articles" class="grid g-three">
                             <% for(article of articles){ %>
-                                <article class="lazy-background hidden" data-src="/<%=article.image %>"  data-id="<%=article._id%>">
+                                <%- include('./includes/article-box.ejs' , {article: article}) %>
+
+                                    <!-- <article class="lazy-background hidden" data-src="/<%=article.image %>"  data-id="<%=article._id%>">
                                     <a href="/article/<%=article.title%>">
                                         <div class="article-body">
                                             <h3>
@@ -27,19 +29,21 @@
                                             </p>
                                         </div>
                                     </a>
-                                </article>
-                                <% } %>
+                                </article> -->
+                                    <% } %>
 
                         </section>
-                        <% } else { %>
+                        <%- include('./includes/pagination.ejs') %>
 
-                            <div class="no-result">
+                            <% } else { %>
 
-                                <img src="/images/noresult.svg" alt="">
-                                <h2>Nothing Here Yet..</h2>
-                                <h3>But you may be intersted in</h3>
-                            </div>
-                            <% } %>
+                                <div class="no-result">
+
+                                    <img src="/images/noresult.svg" alt="">
+                                    <h2>Nothing Here Yet..</h2>
+                                    <h3>But you may be intersted in</h3>
+                                </div>
+                                <% } %>
 
         </div>
         <%- include('./includes/scripts.ejs') %>

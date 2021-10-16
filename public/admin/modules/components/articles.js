@@ -27,7 +27,7 @@ function createSingleItem(c, session) {
                      
                         <div class="info single-item_name"> <h3> Title : ${c.title}</h3> </div>
                         <div class="info"><p>Status: ${c.active ? "Active" : 'Inactive'}</p></div>
-                        <div class=""><p> ${c.content }</p></div>
+                        <div class="article-content"><p > ${c.content }</p></div>
                 
                     </div>
 

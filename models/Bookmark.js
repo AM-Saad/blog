@@ -10,9 +10,11 @@ const bookmarkSchema = new Schema({
                 type: Schema.Types.ObjectId,
                 ref: 'Article',
             },
-            name: String,
+            title: String,
             image: String,
             category: String,
+            date: String,
+            time: String,
         }
     ],
     total: Number,

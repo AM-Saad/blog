@@ -5,10 +5,13 @@ const isAdmin = require('../middleware/is-admin')
 const router = express.Router();
 
 
+
 router.get('/', adminControllers.getLogin);
 router.get('/login', adminControllers.getLogin);
 router.post('/login', adminControllers.postLogin);
 router.get('/logout', adminControllers.postLogout);
+
+router.get('/dashboard', isAdmin, adminControllers.dashboard);
 
 
 router.get("/articles", adminControllers.articlespage);
@@ -31,5 +34,15 @@ router.delete('/api/category/:id', isAdmin, adminControllers.deleteCategory);
 
 router.post('/media', isAdmin, adminControllers.uploadImage)
 router.put('/media', isAdmin, adminControllers.deleteImage)
+
+
+
+
+router.get('/settings', isAdmin, adminControllers.settings);
+router.post('/settings/info', isAdmin, adminControllers.updateInfo);
+router.post('/settings/password', isAdmin, adminControllers.changePassword);
+router.post('/settings/new-admin', isAdmin, adminControllers.newAdmin);
+
+router.get('/logout', adminControllers.postLogout);
 
 module.exports = router;

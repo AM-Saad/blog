@@ -19,9 +19,11 @@ module.exports.updateBookmark = (items, article, body, res) => {
     } else {
         updateditems.push({
             id: article._id,
-            name: article.title,
+            title: article.title,
             category: article.category.name,
             image: article.image,
+            date: article.date,
+            time: article.time,
         });
         added = true
     }

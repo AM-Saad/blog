@@ -7,8 +7,8 @@ router.get("/", mainControllers.home);
 router.get("/me", mainControllers.me);
 router.get("/article/:name", mainControllers.article);
 router.get("/articles/:topic", mainControllers.topics);
-router.get("/bookmarks/", mainControllers.bookmarkPage);
-router.get("/api/bookmarks/", mainControllers.bookmarks);
+router.get("/bookmarks", mainControllers.bookmarkPage);
+router.get("/api/bookmarks/:id", mainControllers.bookmarks);
 router.post("/api/bookmarks/:id", mainControllers.updateBookmark);
 router.get('/api/search', mainControllers.search);
 

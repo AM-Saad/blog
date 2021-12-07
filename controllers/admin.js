@@ -1,4 +1,3 @@
-
 const Admin = require("../models/Admin");
 const Article = require("../models/Article");
 const Subscriber = require("../models/Subscriber");
@@ -20,32 +19,32 @@ exports.dashboard = async (req, res, next) => {
     const subscribers = await Subscriber.find().skip(1).limit(5)
     const totalArticles = await Article.find({}).countDocuments()
     const subscriperlength = await Subscriber.find({}).countDocuments()
-  
-  
-  
+
+
+
     let totalSalesPrice = 0
     articles.forEach(s => {
-      totalSalesPrice += s.totalPrice
+        totalSalesPrice += s.totalPrice
     })
     return res.render(`admin/dashboard`, {
-      users: [],
-      orders: [],
-      pageTitle: "Dashboard",
-      path: "/admin/dashboard",
-      articles: articles,
-      isAuth: req.session.isLoggedIn,
-      user: req.session.user,
-      lang: res.locals.lang,
-      totalSalesPrice: totalSalesPrice,
-      subscriperlength: subscriperlength,
-      totalArticles: totalArticles,
-      subscribers:subscribers,
-      lang: res.locals.lang || 'en'
+        users: [],
+        orders: [],
+        pageTitle: "Dashboard",
+        path: "/admin/dashboard",
+        articles: articles,
+        isAuth: req.session.isLoggedIn,
+        user: req.session.user,
+        lang: res.locals.lang,
+        totalSalesPrice: totalSalesPrice,
+        subscriperlength: subscriperlength,
+        totalArticles: totalArticles,
+        subscribers: subscribers,
+        lang: res.locals.lang || 'en'
     });
-  };
-  
-  
-  
+};
+
+
+
 
 exports.getLogin = async (req, res, next) => {
     // console.log('here');
@@ -200,6 +199,7 @@ exports.createArticle = async (req, res, next) => {
             lang: lang,
             active: active,
             site_description: site_description,
+            slug: title.replace(/\s+/g, '-')
         });
 
         await article.save();
@@ -269,6 +269,8 @@ exports.editArticle = async (req, res, next) => {
         article.active = active
         article.site_description = site_description
         // article.delta = { ...delta }
+        article.slug = title.replace(/\s+/g, '-')
+
         await article.save();
         return res.status(200).json({ message: 'Article Updated', messageType: 'success', article: article });
     } catch (error) {
@@ -374,14 +376,13 @@ exports.editCategory = async (req, res, next) => {
         category.active = req.body.active || true
         category.tag = JSON.parse(req.body.tag)
         category.subCategory = JSON.parse(req.body.subCategories)
-        category.image = req.files.length > 0 ? req.files[0].path.replace("\\", "/") : category.image,
+        category.image = req.files.length > 0 ? req.files[0].path.replace("\\", "/") : category.image
 
-            await category.save()
+        await category.save()
         return res.status(200).json({ message: `${res.locals.lang == 'en' ? 'Edited' : 'تم التعديل '}`, messageType: 'success', category: category })
 
 
     } catch (error) {
-        console.log(error);
         return res.status(500).json({ message: `${res.locals.lang == 'en' ? 'Something went worng, please try again' : 'برجاء اعاده تشغيل الصفحه و المحاوله مره اخري'}`, messageType: 'danger' })
 
     }
@@ -398,15 +399,11 @@ exports.deleteCategory = async (req, res, next) => {
     try {
         const category = await Category.findOne({ _id: groupId })
 
-        await Product.updateMany({ 'category.name': category.name }, { 'category.name': 'default', 'category.subCategory': null })
-
-
+        await Article.updateMany({ 'category.name': category.name }, { 'category.name': 'default', 'category.subCategory': null })
 
         await category.remove()
         return res.status(200).json({ message: `${res.locals.lang == 'en' ? 'Deleted' : 'تم الحذف '}`, messageType: 'success' })
     } catch (error) {
-        console.log(error);
-
         return res.status(500).json({ message: `${res.locals.lang == 'en' ? 'Something went worng, please try again' : 'برجاء اعاده تشغيل الصفحه و المحاوله مره اخري'}`, messageType: 'danger' })
     }
 }
@@ -414,16 +411,13 @@ exports.deleteCategory = async (req, res, next) => {
 
 
 exports.uploadImage = async (req, res, next) => {
-    console.log('here');
     if (req.file) return res.status(200).json('/' + req.file.path.replace("\\", "/"))
 }
 
 
 exports.deleteImage = async (req, res, next) => {
     const name = req.body.name
-    console.log(req.body);
-
-    fs.unlink(`.${name}`, function (error) {
+    return fs.unlink(`.${name}`, function (error) {
         if (error) return res.status(500).json({ message: 'Something went wrong, please try again.', messageType: 'danger' })
     });
 
@@ -435,141 +429,136 @@ exports.deleteImage = async (req, res, next) => {
 
 exports.settings = async (req, res, next) => {
     const msgs = msg(req, res)
-  
+
     try {
-        console.log(req.session);
-      const user = await Admin.findById(req.session.user._id)
-      if (!user) {
-        req.flash('alert', `${res.locals.lang == 'en' ? 'Something went worng, Re-login please' : 'برجاء اعاده تسجيل الدخول و المحاوله مره اخري'}`)
-        return res.redirect('/admin/settings')
-      }
-      return res.render(`admin/settings`, {
-        user: user,
-        pageTitle: `${user.name}`,
-        path: '/admin/settings',
-        errmsg: msgs.err,
-        succmsg: msgs.success,
-        isAuth: req.session.isLoggedIn,
-        user: req.session.user,
-        lang: res.locals.lang
-  
-  
-      })
+        const user = await Admin.findById(req.session.user._id)
+        if (!user) {
+            req.flash('alert', `${res.locals.lang == 'en' ? 'Something went worng, Re-login please' : 'برجاء اعاده تسجيل الدخول و المحاوله مره اخري'}`)
+            return res.redirect('/admin/settings')
+        }
+        return res.render(`admin/settings`, {
+            user: user,
+            pageTitle: `${user.name}`,
+            path: '/admin/settings',
+            errmsg: msgs.err,
+            succmsg: msgs.success,
+            isAuth: req.session.isLoggedIn,
+            user: req.session.user,
+            lang: res.locals.lang
+
+
+        })
     } catch (err) {
-      const error = new Error(err);
-      error.httpStatusCode = 500;
-      return next(error);
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
     }
-  }
-  
-  
-  
-  exports.newAdmin = async (req, res, next) => {
+}
+
+
+
+exports.newAdmin = async (req, res, next) => {
     const { name, mobile, password, confirmPassword } = req.body
     try {
-      if (!mobile || !name) {
-        req.flash('alert', `${res.locals.lang == 'en' ? 'Mobile and name are required' : 'ادخل الاسم و رقم الموبايل'}`)
+        if (!mobile || !name) {
+            req.flash('alert', `${res.locals.lang == 'en' ? 'Mobile and name are required' : 'ادخل الاسم و رقم الموبايل'}`)
+            return res.redirect('/admin/settings')
+        }
+        if (!password) {
+            req.flash('alert', `${res.locals.lang == 'en' ? 'Add password' : 'ادخل رقم المرور'}`)
+            return res.redirect('/admin/settings')
+        }
+        if (password != confirmPassword) {
+            req.flash('alert', `${res.locals.lang == 'en' ? 'Password Not match' : 'رقم المرور غير متطابق'}`)
+            return res.redirect('/admin/settings')
+        }
+        const hashedPassword = await bcrypt.hash(password, 12)
+        const newAdmin = new Admin({
+            name: name,
+            mobile: mobile,
+            password: hashedPassword,
+            isAdmin: true
+        })
+        await newAdmin.save()
+        req.flash('success', `${res.locals.lang == 'en' ? 'Created' : 'تم الانشاء'}`)
         return res.redirect('/admin/settings')
-      }
-      if (!password) {
-        req.flash('alert', `${res.locals.lang == 'en' ? 'Add password' : 'ادخل رقم المرور'}`)
-        return res.redirect('/admin/settings')
-      }
-      if (password != confirmPassword) {
-        req.flash('alert', `${res.locals.lang == 'en' ? 'Password Not match' : 'رقم المرور غير متطابق'}`)
-        return res.redirect('/admin/settings')
-      }
-      const hashedPassword = await bcrypt.hash(password, 12)
-      const newAdmin = new Admin({
-        name: name,
-        mobile: mobile,
-        password: hashedPassword,
-        isAdmin: true
-      })
-      await newAdmin.save()
-      req.flash('success', `${res.locals.lang == 'en' ? 'Created' : 'تم الانشاء'}`)
-      return res.redirect('/admin/settings')
-  
+
     } catch (err) {
-      const error = new Error(err);
-      error.httpStatusCode = 500;
-      return next(error);
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
     }
-  
-  }
-  
-  exports.updateInfo = async (req, res, next) => {
+
+}
+
+exports.updateInfo = async (req, res, next) => {
     const { mobile, name, bio, resume } = req.body
     try {
-      const user = await Admin.findOne({ _id:req.session.user._id })
-      if (!user) {
-        req.flash('alert', `${res.locals.lang == 'en' ? 'Something went worng, Re-login please' : 'برجاء اعاده تسجيل الدخول و المحاوله مره اخري'}`)
+        const user = await Admin.findOne({ _id: req.session.user._id })
+        if (!user) {
+            req.flash('alert', `${res.locals.lang == 'en' ? 'Something went worng, Re-login please' : 'برجاء اعاده تسجيل الدخول و المحاوله مره اخري'}`)
+            return res.redirect('/admin/settings')
+        }
+
+        if (!mobile || !name) {
+            req.flash('alert', `${res.locals.lang == 'en' ? 'Mobile and name are required' : 'ادخل الاسم و رقم الموبايل'}`)
+            return res.redirect('/admin/settings')
+        }
+
+        user.mobile = mobile
+        user.name = name
+        user.bio = bio
+        user.resume = resume
+        await user.save()
+        req.flash('success', `${res.locals.lang == 'en' ? 'Edited' : 'تم التعديل'}`)
         return res.redirect('/admin/settings')
-      }
-  
-      if (!mobile || !name) {
-        req.flash('alert', `${res.locals.lang == 'en' ? 'Mobile and name are required' : 'ادخل الاسم و رقم الموبايل'}`)
-        return res.redirect('/admin/settings')
-      }
-  
-      user.mobile = mobile
-      user.name = name
-      user.bio=bio
-      user.resume = resume
-      await user.save()
-      req.flash('success', `${res.locals.lang == 'en' ? 'Edited' : 'تم التعديل'}`)
-      return res.redirect('/admin/settings')
-  
-  
+
+
     } catch (err) {
-      console.log(err);
-  
-      const error = new Error(err);
-      error.httpStatusCode = 500;
-      return next(error);
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
     }
-  
-  }
-  exports.changePassword = async (req, res, next) => {
+
+}
+exports.changePassword = async (req, res, next) => {
     const { oldPassword, newPassword, confirmPassword } = req.body
     try {
-      const user = await Admin.findOne({ _id: req.session.user._id})
-      if (!user) {
-        req.flash('alert', `${res.locals.lang == 'en' ? 'Something went worng, Re-login please' : 'برجاء اعاده تسجيل الدخول و المحاوله مره اخري'}`)
-        return res.redirect('/admin/settings')
-      }
-      const isMatched = await bcrypt.compare(oldPassword, user.password)
-      if (!isMatched) {
-        req.flash('alert', `${res.locals.lang == 'en' ? 'Old password incorrect' : ' خطأ في رقم المرور القديم'}`)
-        return res.redirect('/admin/settings')
-      }
-      if (newPassword != confirmPassword) {
-        req.flash('alert', `${res.locals.lang == 'en' ? 'Password Not match' : 'رقم المرور غير متطابق'}`)
-  
-        return res.redirect('/admin/settings')
-      }
-      const hashedPassword = await bcrypt.hash(newPassword, 12)
-      user.password = hashedPassword
-      await user.save()
-      req.flash('success', `${res.locals.lang == 'en' ? 'Passwrod Changed' : 'تم تغير رقم المرور'}`)
-  
-      return res.redirect('/admin/settings')
-  
-  
-    } catch (err) {
-      const error = new Error(err);
-      error.httpStatusCode = 500;
-      return next(error);
-    }
-  
-  }
+        const user = await Admin.findOne({ _id: req.session.user._id })
+        if (!user) {
+            req.flash('alert', `${res.locals.lang == 'en' ? 'Something went worng, Re-login please' : 'برجاء اعاده تسجيل الدخول و المحاوله مره اخري'}`)
+            return res.redirect('/admin/settings')
+        }
+        const isMatched = await bcrypt.compare(oldPassword, user.password)
+        if (!isMatched) {
+            req.flash('alert', `${res.locals.lang == 'en' ? 'Old password incorrect' : ' خطأ في رقم المرور القديم'}`)
+            return res.redirect('/admin/settings')
+        }
+        if (newPassword != confirmPassword) {
+            req.flash('alert', `${res.locals.lang == 'en' ? 'Password Not match' : 'رقم المرور غير متطابق'}`)
 
-  exports.postLogout = (req, res, next) => {
+            return res.redirect('/admin/settings')
+        }
+        const hashedPassword = await bcrypt.hash(newPassword, 12)
+        user.password = hashedPassword
+        await user.save()
+        req.flash('success', `${res.locals.lang == 'en' ? 'Passwrod Changed' : 'تم تغير رقم المرور'}`)
+
+        return res.redirect('/admin/settings')
+
+
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+
+}
+
+exports.postLogout = (req, res, next) => {
     req.session.destroy(err => {
-      console.log(err);
-      res.redirect("/");
+        return res.redirect("/");
     });
-  };
-  
-  
-  
+};
+
+

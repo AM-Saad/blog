@@ -6,11 +6,9 @@ const { updateBookmark, createBookmark, } = require("../util/bookmark");
 const fs = require('fs')
 exports.home = async (req, res, next) => {
     try {
-        const articles = await Article.find({ active: true });
+        const articles = await Article.find();
+  
         const categories = await Category.find({});
-        // var json = JSON.stringify(articles);
-        // fs.writeFile('data.json', json, 'utf8', callback);
-        // await Bookmark.deleteMany({})
         if (!articles) {
             const error = new Error("Could not find articles.");
             error.statusCode = 404;
@@ -25,8 +23,10 @@ exports.home = async (req, res, next) => {
             pageDescription: "Hello, I'm Abdelrahman Saad, a web developer passionate about tech in general and javascript, I have a strong background in marketing and graphic design. "
         });
 
-    } catch (error) {
-        console.log(error)
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
     }
 }
 
@@ -42,20 +42,22 @@ exports.me = async (req, res, next) => {
 
         });
 
-    } catch (error) {
-        console.log(error)
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
     }
 }
 
 exports.topics = async (req, res, next) => {
-    const itemPerPage = 2;
+    const itemPerPage = 10;
     const pageNum = +req.query.page || 1;
     try {
         let query = req.params.topic === 'all' ? { active: true } : { active: true, 'category.name': req.params.topic }
         const articles = await Article.find(query).skip((pageNum - 1) * itemPerPage)
-        .limit(itemPerPage)
+            .limit(itemPerPage)
         const categories = await Category.find({});
-       const totalItems = await Article.find(query).countDocuments()
+        const totalItems = await Article.find(query).countDocuments()
         if (!articles) {
             const error = new Error("Could not find articles.");
             error.statusCode = 404;
@@ -76,16 +78,21 @@ exports.topics = async (req, res, next) => {
             lastPage: Math.ceil(totalItems / itemPerPage),
         });
 
-    } catch (error) {
-        console.log(error)
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
     }
 }
 
 
 exports.article = async (req, res, next) => {
     try {
-        const article = await Article.findOne({ title: req.params.name });
+        const article = await Article.findOne({ slug: req.params.slug });
         const categories = await Category.find({});
+        let similar = await Article.find({ "category.name": article.category.name })
+        similar = similar.filter(i => i._id.toString() !== article._id.toString())
+     
         if (!article) {
             const error = new Error("Could not find matched article.");
             error.statusCode = 404;
@@ -97,11 +104,14 @@ exports.article = async (req, res, next) => {
             topics: categories,
             path: article.title,
             pageKeywords: article.tags.join(", "),
-            pageDescription: article.description
+            pageDescription: article.description,
+            similar: similar
         });
 
-    } catch (error) {
-        console.log(error)
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
     }
 }
 
@@ -208,3 +218,117 @@ exports.search = async (req, res, next) => {
         return next(error);
     }
 }
+
+
+
+exports.addComment = async (req, res, next) => {
+    const id = req.params.id;
+    const comment = req.body.comment;
+    try {
+      const user = await User.findOne({ _id: req.user.id });
+      if (!user) {
+        console.log("no");
+      }
+  
+      const article = await Article.findOne({ _id: id });
+  
+      let newComment = {
+        userId: user._id,
+        username: user.name,
+        userPicture: user.profilePicture,
+        comment: comment
+      };
+  
+      article.comments.push(newComment);
+      await article.save();
+      res.status(200).json(article);
+    } catch (err) {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    }
+  };
+  
+  exports.getComments = async (req, res, next) => {
+    const id = req.params.id;
+  
+    try {
+      const article = await Article.findOne({ _id: id });
+      const comments = article.comments;
+  
+      return res.status(200).json(comments);
+    } catch (error) {
+      if (!error.statusCode) {
+        error.statusCode = 500;
+      }
+      next(error);
+    }
+  };
+  
+  exports.react = async (req, res, next) => {
+    const id = req.params.id;
+    const react = req.query.react
+    let bookmardId = req.query.bookmark
+  
+    try {
+      const article = await Article.findById(id);
+      if (!article) {
+        const error = new Error("No article Found..");
+        error.statusCode = 401;
+        next(error);
+        throw error;
+      }
+  
+      const index = article.reactions[react].users.findIndex(u => u.id.toString() === bookmardId.toString())
+  
+      if (index <= -1) {
+        article.reactions[react].users.push({ id: bookmardId })
+        article.reactions[react].counter += 1
+      } else {
+        article.reactions[react].users = article.reactions[react].users.filter(u => u.id.toString() != bookmardId.toString())
+        article.reactions[react].counter -= 1
+      }
+  
+      await article.save();
+      return res.status(200).json({ message: "Liked", reactions: article.reactions });
+    } catch (error) {
+      error.statusCode = 500;
+      return next(error);
+    }
+  };
+  
+  exports.getLikes = async (req, res, next) => {
+    const id = req.params.id;
+  
+    try {
+      const article = await Article.findOne({ _id: id });
+      if (!article) {
+        const error = new Error("No article Found..");
+        error.statusCode = 401;
+        return next(error);
+      }
+      const likes = article.like;
+      return await res.status(200).json({ likes: likes });
+    } catch (error) {
+      console.log(error);
+      error.statusCode = 500;
+      return next(error);
+    }
+  };
+  
+  
+  exports.newView = async (req, res, next) => {
+    const id = req.params.id
+    const item = req.query.item
+  
+    try {
+      if (item == 'article') {
+        console.log(item);
+        await Article.findByIdAndUpdate(id, { $inc: { views: 1 } }, { new: true })
+      }
+      return res.status(200).json({ message: 'ok' })
+    } catch (error) {
+      error.statusCode = 500;
+      return next(error);
+    }
+  }

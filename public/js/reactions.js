@@ -1,32 +1,4 @@
-let inBookmarkpage = false
 
-async function getBookmark(inPage) {
-    inBookmarkpage = inPage
-    let bookmark = getbookmarkId()
-    $('.offcanvas_aside.offcanvas_aside_right').addClass('active')
-
-    const csrf = $("[name=_csrf]").val();
-
-    if (inPage) $('#articles').addClass('loader')
-
-    const data = await fetchdata(csrf, `/api/bookmarks/${bookmark}`, 'get', {}, false)
-
-    if (inPage) $('#articles').removeClass('loader')
-
-    let items = data.json.bookmark.items
-
-    console.log(data)
-    if (data) {
-        renderItems(items)
-        setBookmarkId(data.json.bookmark.sessionId)
-    } else {
-        getDataFromIndexedDb()
-
-    }
-
-
-
-}
 function getDataFromIndexedDb() {
     readAllData('bookmarks').then(data => {
         console.log(data);
@@ -35,8 +7,7 @@ function getDataFromIndexedDb() {
 
 function renderItems(items) {
     items.forEach(article => {
-        if (inBookmarkpage) {
-            $('#articles').append(`
+        $('#articles').append(`
             <article class="bookmark-item"
             data-src="/${article.image}" style="background-image:url('/${article.image}')" data-id="${article._id}">
             <input type="hidden" name="articleId" value="${article.id}">
@@ -47,7 +18,7 @@ function renderItems(items) {
                         d="M11.5,2.5h-7c-0.552,0-1,0.448-1,1v10L8,10.2l4.5,3.3v-10C12.5,2.948,12.052,2.5,11.5,2.5z" />
                 </svg>
             </span>
-            <a href="/article/${article.slug}">
+            <a href="/article/${article.title}">
                 <div class="article-body">
                     <div class="blurrer"></div>
                     <h3> ${article.title} </h3>
@@ -57,58 +28,59 @@ function renderItems(items) {
         </article>
             `)
 
-            $(`[data-id=${article._id}] path`).css({ fill: '#ff0' })
-        } else {
-            $(`[data-id=${article.id}] path`).css({ fill: '#ff0' })
+        $(`[data-id=${article._id}] path`).css({ fill: '#ff0' })
 
-        }
     });
 
 }
 
 
-async function updateBookmark(e) {
+async function react(e) {
 
     let bookmarkId = getbookmarkId()
 
 
     const csrf = $("[name=_csrf]").val();
 
-    const itemId = $(e.target).parents('article').find("[name=articleId]").val()
-
+    const itemId = $("#articleId").val()
+    const react = $(e.currentTarget).data('react')
+    console.log(react)
     $(e.currentTarget).find('.lds-hourglass').removeClass('none')
-    $(e.currentTarget).find('span').addClass('none')
-    $(e.target).parents('article').addClass('loader')
-    console.log(bookmarkId)
-    console.log(itemId)
-    const data = await fetchdata(csrf, `/api/bookmarks/${itemId}?bookmark=${bookmarkId}`, 'post', JSON.stringify(), true)
+    // $(e.target).parents('article').addClass('loader')
+    $(e.currentTarget).addClass("active");
+
+    setTimeout(() => {
+        $("li.active").removeClass("active");
+    }, 1000);
+    const data = await fetchdata(csrf, `/api/react/${itemId}?bookmark=${bookmarkId}&&react=${react}`, 'put', JSON.stringify(), true)
     $(e.target).parents('article').removeClass('loader')
-
+    console.log(data)
     if (data) {
-        setBookmarkId(data.json.bookmark.sessionId)
+        $(`.react`).each(function () {
+            const reaction = $(this).data('react')
+            const counter = data.json.reactions[reaction].counter
+            $(this).find('span').text(counter)
+        })
+        // if (data.json.added) {
+        //     $(`[data-id=${itemId}] path`).css({ fill: '#ff0' })
+        // } else {
+        //     $(`[data-id=${itemId}] path`).css({ fill: 'transparent' })
+        //     $(`[data-id=${itemId}].bookmark-item`).remove()
+        // }
+        // if (inBookmarkpage) {
+        //     $(e.target).parents('article').remove()
+        //     if ($('article').length == 0) {
+        //         $('#articles').append(`
+        //         <div class="no-result">
+        //                     <img src="/images/empty_bookmark.svg" alt="">
+        //                     <h2>Oops!</h2>
+        //                     <h3>You've not add a bookmark until now!! <br> Goo ahead and add you will need it later</h3>
+        //                 </div>  
+        //       `)
+        //     }
+        // }
 
-        if (data.json.added) {
-            $(`[data-id=${itemId}] path`).css({ fill: '#ff0' })
-        } else {
-            $(`[data-id=${itemId}] path`).css({ fill: 'transparent' })
-            $(`[data-id=${itemId}].bookmark-item`).remove()
-        }
-        if (inBookmarkpage) {
-            $(e.target).parents('article').remove()
-            if ($('article').length == 0) {
-                $('#articles').append(`
-                <div class="no-result">
-                            <img src="/images/empty_bookmark.svg" alt="">
-                            <h2>Oops!</h2>
-                            <h3>You've not add a bookmark until now!! <br> Goo ahead and add you will need it later</h3>
-                        </div>  
-              `)
-            }
-        }
 
-
-        localStorage.setItem('c_s', data.json.bookmark.sessionId)
-        addBookmarkSessionToCartBtn()
 
 
     }
@@ -170,4 +142,5 @@ function addBookmarkSessionToCartBtn() {
 addBookmarkSessionToCartBtn()
 
 
-$('body').on('click', '.add-bookmark', updateBookmark)
+$('.react').on('click', react)
+

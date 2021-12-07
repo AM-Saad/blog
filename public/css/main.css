@@ -333,7 +333,7 @@ header h2 {
 }
 
 #topics li.active a, #topics li:hover a {
-    color: #000;
+    color: #000;    
     font-weight: bold;
 }
 
@@ -348,7 +348,7 @@ header h2 {
 
 #articles article {
     padding: var(--s-padding);
-    min-height: 400px;
+    min-height: 300px;
     width: 95%;
     border-radius: var(--l-radius);
     box-shadow: var(--shadow3);
@@ -358,6 +358,7 @@ header h2 {
     background-repeat: no-repeat;
     position: relative;
     transition: .5s;
+    background-color: #fff
 }
 
 .lazy-background.hidden {
@@ -382,6 +383,9 @@ header h2 {
     top: 0;
 }
 
+#articles article img {
+    width: 100%
+}
 #articles article a {
     display: block;
     height: 100%;
@@ -391,7 +395,7 @@ header h2 {
 #articles .article-body {
     background-color: #f9f9f9;
     height: 30%;
-    width: 80%;
+    width: 90%;
     padding: var(--m-padding);
     border-radius: var(--l-radius);
     position: absolute;
@@ -416,16 +420,19 @@ header h2 {
 }
 
 #articles .article-body h4 {
-    font-size: 20px;
-    line-height: 1.4;
+    font-size: 16px;
+    line-height: 1.2;
 }
 
 #articles .article-body p {
     text-align: right;
-    font-size: 15px;
+    font-size: 14px;
     margin: var(--s-margin);
-    font-weight: bold;
-    color: #444;
+    /* font-weight: bold; */
+    color: #555;
+    position: absolute;
+    bottom: 2px;
+    right: 5px;
 }
 
 #subscribe {
@@ -433,6 +440,8 @@ header h2 {
     padding: var(--m-padding);
     justify-items: center;
     color: #fff;
+    background-color: #f9f9f9;
+    border-radius: var(--m-radius);
 }
 
 [data-mode="light"] #subscribe {
@@ -440,7 +449,7 @@ header h2 {
 }
 
 [data-mode="dark"] #subscribe {
-    color: #fff;
+    color: #000;
 }
 
 #subscribe h5 {
@@ -457,13 +466,12 @@ header h2 {
 
 #subscribe input {
     height: 100%;
-    width: 200px;
-    max-width: 60%;
+    width: 240px;
+    max-width: 70%;
     border: 0;
     border-radius: var(--s-radius);
     font-size: 16px;
     padding: var(--s-padding);
-    background-color: #eee;
 }
 
 #subscribe input:focus, #subscribe input::-moz-focus-outer {
@@ -659,11 +667,14 @@ ul.drop li a {
     #articles article{
         min-height: 300px;
     }
+    #articles .article-body h4{
+        font-size: 16px   
+    }
 }
 
 @media only screen and (min-width: 767px) {
     .wrapper {
-        width: 80%;
+        width: 70%;
         margin-bottom: var(--m-margin);
     }
     nav#main-nav {

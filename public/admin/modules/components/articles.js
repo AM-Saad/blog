@@ -24,18 +24,20 @@ function createSingleItem(c, session) {
                     </div>
 
                     <div class="single-item-core">
-                     
-                        <div class="info single-item_name"> <h3> Title : ${c.title}</h3> </div>
-                        <div class="info"><p>Status: ${c.active ? "Active" : 'Inactive'}</p></div>
+                        <div class="form_inputs_info">
+                            <div class="info single-item_name"> <h3> Title : ${c.title}</h3> </div>
+                            <div class="info"><p>Status: ${c.active ? "Active" : 'Inactive'}</p></div>
+                            <div class="images-perview p-relative item-images"> 
+                            <div class="p-relative">
+                                <img src="/${c.image}">
+                            </div>
+                        </div>
+                        </div>
                         <div class="article-content"><p > ${c.content }</p></div>
                 
                     </div>
 
-                    <div class="images-perview p-relative item-images bg-lightgray"> 
-                        <div class="p-relative">
-                            <img src="/${c.image}">
-                        </div>
-                    </div>
+                   
                     
                     </div>
 

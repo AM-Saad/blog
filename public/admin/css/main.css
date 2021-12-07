@@ -621,7 +621,7 @@ i.close-form {
 
 .single-item-core .article-content{
   padding: var(--l-padding);
-  font-size: .8em;
+  font-size: .5em;
 }
 .invoice-wrapper {
   position: fixed;

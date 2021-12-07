@@ -75,9 +75,9 @@ app.get('/sitemap.xml', async function (req, res) {
   }
 
   try {
-    const allArticles = await Article.find({ active: true }).select('title')
+    const allArticles = await Article.find({ active: true }).select('slug')
     const allCategories = await Category.find().select('name')
-    const articles = allArticles.map(({ title }) => `/article/${title}`)
+    const articles = allArticles.map(({ slug }) => `/article/${slug}`)
     const categories = allCategories.map(({ name }) => `/articles/${name}`)
     // Change yourWebsite.com to your website's URL
     const smStream = new SitemapStream({ hostname: 'https://abdelrahman-saad.cc/' })
@@ -161,8 +161,14 @@ app.use((error, req, res, next) => {
 });
 
 
+app.get('*', function(req, res){
+  return res.status(404).render("404", {
+    pageTitle: "Error!",
+    path: "/404",
+});
 
-// mongoConnect(() => { });
+});
+
 
 
 mongoose

@@ -12,19 +12,19 @@ const ArticleSchema = new Schema(
     reactions: {
       highfive: {
         users: [{
-          id: { type: Schema.Types.ObjectId, ref: 'User' }
+          id: String
         }],
         counter: Number
       },
       like: {
         users: [{
-          id: { type: Schema.Types.ObjectId, ref: 'User' }
+          id: String
         }],
         counter: Number
       },
       dislike: {
         users: [{
-          id: { type: Schema.Types.ObjectId, ref: 'User' }
+          id: String
         }],
         counter: Number
       },
@@ -55,7 +55,8 @@ const ArticleSchema = new Schema(
     time: String,
     delta: {},
     lang: String,
-    views: { type: Number, default: 0 }
+    views: { type: Number, default: 0 },
+    slug:String,
   },
   { timestamps: true }
 );

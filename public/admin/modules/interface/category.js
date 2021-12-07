@@ -125,11 +125,8 @@
         createItemForm: function () {
             const name = $('#name').val();
             const order = $('#order').val();
-            console.log($('#tag').data('ar'));
             const tag = { en: $('#tag').val(), ar: $('#tag').find(":selected").data('ar') };
-            console.log(tag);
             const active = document.getElementById('active').checked
-            console.log(active);
             if (!name.replace(/\s/g, '').length) {
                 showmessage('All Stared <span class="c-r">"*"</span> fields required ', 'info', 'body')
                 return false
@@ -149,7 +146,6 @@
         getCategoryImg: function (e) {
             var files = e.target.files[0]; //FileList object
             const fileValid = this.validateImage(files)
-            console.log(fileValid);
             if (fileValid) {
                 this.itemImg = files
             }

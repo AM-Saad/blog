@@ -70,7 +70,7 @@
             // hljs.highlightAll();
             var toolbarOptions = [
                 ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-                ['blockquote', 'code-block'],
+                ['blockquote', 'code-block','link'],
                 [{ 'header': 1 }, { 'header': 2 }],               // custom button values
                 [{ 'list': 'ordered' }, { 'list': 'bullet' }],
                 [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
@@ -85,7 +85,6 @@
             ];
             hljs.configure({ languages: ['javascript'] });
 
-            console.log(hljs);
 
             var quill = new Quill('.editor', {
                 modules: {
@@ -112,7 +111,7 @@
                     let valid = config.validateImage(file)
                     console.log(valid);
                     if (valid) {
-                        // saveToServer(file);
+                        saveToServer(file);
 
                     }
                     // if (/^image\//.test(file.type)) {

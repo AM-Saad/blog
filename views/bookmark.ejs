@@ -3,7 +3,15 @@
 
 <head>
     <%- include('./includes/head.ejs') %>
+        <style>
+            [data-mode="light"] h1 {
+                color: #111;
+            }
 
+            [data-mode="dark"] h1 {
+                color: #f9f9f9;
+            }
+        </style>
 </head>
 
 <body onload="getBookmark(true)">
@@ -16,18 +24,18 @@
                 <input type="hidden" id="bookmardId" value="">
 
                 <%- include('./includes/topics.ejs') %>
-                    <h1>Your Bookmark</h1>
+                    <h1 style="padding: var(--m-padding)">Your Bookmark</h1>
 
                     <section id="articles" class="grid g-three">
 
                     </section>
-         
+
 
     </div>
     <%- include('./includes/scripts.ejs') %>
         <script>
-           const bookmardId =  getbookmarkId()
-           document.getElementById('bookmardId').value = bookmardId
+            const bookmardId = getbookmarkId()
+            document.getElementById('bookmardId').value = bookmardId
 
         </script>
 
